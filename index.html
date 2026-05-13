@@ -816,7 +816,7 @@
       <div class="flow-card fc-a">
         <span class="flow-letter">A</span>
         <div class="flow-name">Kruislijnlaser</div>
-        <div class="flow-q">5 vragen</div>
+        <div class="flow-q">4 vragen</div>
       </div>
       <div class="flow-card fc-b">
         <span class="flow-letter">B</span>
@@ -826,12 +826,12 @@
       <div class="flow-card fc-c">
         <span class="flow-letter">C</span>
         <div class="flow-name">Puntlaser</div>
-        <div class="flow-q">2 vragen</div>
+        <div class="flow-q">1 vraag</div>
       </div>
       <div class="flow-card fc-d">
         <span class="flow-letter">D</span>
         <div class="flow-name">Lijnlaser</div>
-        <div class="flow-q">3 vragen</div>
+        <div class="flow-q">2 vragen</div>
       </div>
     </div>
   </div>
@@ -952,7 +952,7 @@
     <span class="sh-letter">A</span>
     <div class="sh-info">
       <h2>Flow A — Kruislijnlaser</h2>
-      <p>5 vragen · Uitlijnen, tegelen, waterpas zetten, binnenwerk</p>
+      <p>4 vragen · Uitlijnen, tegelen, waterpas zetten, binnenwerk</p>
     </div>
   </div>
 
@@ -1151,56 +1151,6 @@
       </table>
     </div>
   </div>
-
-  <!-- A5 -->
-  <div class="q-card">
-    <div class="q-header">
-      <span class="q-id qid-a">A5</span>
-      <div class="q-title">Welke voeding past het best bij jou?</div>
-      <div class="q-hint">Kies wat het best aansluit bij hoe jij werkt: eenvoudig, compact of op jouw bestaande accuplatform.</div>
-    </div>
-    <div class="q-options">
-      <div class="q-options-label">Antwoorden</div>
-      <div class="option-row">
-        <div class="option-bullet"></div>
-        <div class="option-text"><strong>Standaard batterijen (AA/AAA)</strong><span>Overal verkrijgbaar, geen lader nodig</span></div>
-      </div>
-      <div class="option-row">
-        <div class="option-bullet"></div>
-        <div class="option-text"><strong>Geïntegreerde oplaadbare accu</strong><span>Via USB-C, handig voor frequent gebruik</span></div>
-      </div>
-      <div class="option-row">
-        <div class="option-bullet"></div>
-        <div class="option-text"><strong>Platformaccu (12V / 18V / 40V)</strong><span>Voor wie al op een accuplatform werkt</span></div>
-      </div>
-    </div>
-    <div class="q-matching">
-      <div class="q-matching-label">Qonfi data matching — Voeding</div>
-      <div class="match-group">
-        <div class="match-option-name">Standaard batterijen</div>
-        <div class="match-rule"><span class="tag tag-hard">hard</span><span class="match-text">Voeding contains "AA"</span></div>
-      </div>
-      <div class="match-group">
-        <div class="match-option-name">Geïntegreerde oplaadbare accu</div>
-        <div class="match-rule"><span class="tag tag-hard">hard</span><span class="match-text">Voeding contains "Li-Ion (geintegreerd)"</span></div>
-      </div>
-      <div class="match-group">
-        <div class="match-option-name">Platformaccu</div>
-        <div class="match-rule"><span class="tag tag-hard">hard</span><span class="match-text">Voeding contains "12V Li-Ion" OR "18V Li-Ion" OR "40V Li-Ion"</span></div>
-      </div>
-    </div>
-    <div class="note-box">
-      <strong>Conditionele vervolgvraag</strong> <span class="conditional-badge">conditioneel</span> — alleen tonen bij keuze "Platformaccu":<br><br>
-      "Welk platform gebruik je al?"<br>
-      <div style="margin-top:8px;">
-        <div class="match-rule" style="margin-bottom:4px;"><span class="tag tag-hard">hard</span><span class="match-text">12V → Voeding contains "12V Li-Ion"</span></div>
-        <div class="match-rule" style="margin-bottom:4px;"><span class="tag tag-hard">hard</span><span class="match-text">18V → Voeding contains "18V Li-Ion"</span></div>
-        <div class="match-rule" style="margin-bottom:4px;"><span class="tag tag-hard">hard</span><span class="match-text">12V/18V → Voeding contains "12V Li-Ion" OR "18V Li-Ion"</span></div>
-        <div class="match-rule" style="margin-bottom:4px;"><span class="tag tag-hard">hard</span><span class="match-text">40V → Voeding contains "40V Li-Ion"</span></div>
-        <div class="match-rule"><span class="tag tag-none">geen filter</span><span class="match-text">Geen voorkeur → geen hard filter</span></div>
-      </div>
-    </div>
-  </div>
   </div><!-- /flow-group A -->
 
   <div class="flow-divider"></div>
@@ -1357,33 +1307,46 @@
   <div class="q-card">
     <div class="q-header">
       <span class="q-id qid-b">B4</span>
-      <div class="q-title">Welke voeding past het best bij jou?</div>
-      <div class="q-hint">Rotatielasers werken op D-batterijen (standaard) of 18V platformaccu's (voor wie al in dat platform zit).</div>
+      <div class="q-title">Heb je ook verticaal werk nodig?</div>
+      <div class="q-hint">De meeste rotatielasers draaien ook als verticale cirkel, waarmee je hoeken kunt uitzetten of verticale vlakken kunt markeren. De GRL 400 H draait alleen horizontaal.</div>
     </div>
     <div class="q-options">
       <div class="q-options-label">Antwoorden</div>
       <div class="option-row">
         <div class="option-bullet"></div>
-        <div class="option-text"><strong>D-batterijen (LR2)</strong><span>Standaard voor rotatielasers, overal verkrijgbaar</span></div>
+        <div class="option-text"><strong>Ja</strong><span>Hoeken uitzetten of verticale vlakken markeren</span></div>
       </div>
       <div class="option-row">
         <div class="option-bullet"></div>
-        <div class="option-text"><strong>18V platformaccu</strong><span>Voor wie al op het 18V Bosch of DeWalt platform werkt</span></div>
+        <div class="option-text"><strong>Nee</strong><span>Alleen horizontaal nivelleren volstaat</span></div>
+      </div>
+      <div class="option-row">
+        <div class="option-bullet"></div>
+        <div class="option-text"><strong>Geen voorkeur</strong></div>
       </div>
     </div>
     <div class="q-matching">
-      <div class="q-matching-label">Qonfi data matching — Voeding</div>
+      <div class="q-matching-label">Qonfi data matching — Projectie (laserstralen)</div>
       <div class="match-group">
-        <div class="match-option-name">D-batterijen</div>
-        <div class="match-rule"><span class="tag tag-hard">hard</span><span class="match-text">Voeding contains "D"</span></div>
+        <div class="match-option-name">Ja</div>
+        <div class="match-rule"><span class="tag tag-hard">hard</span><span class="match-text">Projectie (laserstralen) contains "verticaal"</span></div>
       </div>
       <div class="match-group">
-        <div class="match-option-name">18V platformaccu</div>
-        <div class="match-rule"><span class="tag tag-hard">hard</span><span class="match-text">Voeding contains "18V Li-Ion"</span></div>
+        <div class="match-option-name">Nee</div>
+        <div class="match-rule"><span class="tag tag-none">geen filter</span><span class="match-text">Geen filter — alle modellen niveleren horizontaal</span></div>
+      </div>
+      <div class="match-group">
+        <div class="match-option-name">Geen voorkeur</div>
+        <div class="match-rule"><span class="tag tag-none">geen filter</span><span class="match-text">Geen filter op projectierichting</span></div>
       </div>
     </div>
-    <div class="note-box">
-      Sommige modellen (GRL 600 CHV, GRL 650 CHVG) ondersteunen beide voedingsopties — die verschijnen bij beide keuzes.
+    <div class="data-table-wrap">
+      <div class="data-table-label">Datadekking projectie rotatielasers</div>
+      <table class="data-table">
+        <tr><th>Projectie (laserstralen)</th><th>Modellen</th></tr>
+        <tr><td><code>cirkel horizontaal of verticaal</code></td><td>GRL 300 HV, GRL 300 HVG, GRL 600 CHV, GRL 650 CHVG</td></tr>
+        <tr><td><code>cirkel horizontaal</code></td><td>GRL 400 H</td></tr>
+      </table>
     </div>
   </div>
   </div><!-- /flow-group B -->
@@ -1398,19 +1361,19 @@
     <span class="sh-letter">C</span>
     <div class="sh-info">
       <h2>Flow C — Puntlaser</h2>
-      <p>2 vragen · Loodpuntoverdracht van vloer naar plafond</p>
+      <p>1 vraag · Puntprojectie van vloer naar plafond</p>
     </div>
   </div>
 
   <div class="note-box" style="margin:0 0 12px; border-radius:8px;">
-    <strong>Assortimentsnota:</strong> het assortiment pure puntlasers bestaat uit 2 modellen (<strong>GPL 3 G</strong> en <strong>GPL 5 G</strong>). Beide zijn groen, IP65, max 30m bereik en 2×AA voeding. Het enige echte onderscheid is het aantal loodpunten.
+    <strong>Assortimentsnota:</strong> het assortiment pure puntlasers bestaat uit 2 modellen (<strong>GPL 3 G</strong> en <strong>GPL 5 G</strong>). Beide zijn groen, IP65, max 30m bereik en 2×AA voeding. Het enige echte onderscheid is het aantal geprojecteerde punten.
   </div>
 
   <!-- C1 -->
   <div class="q-card">
     <div class="q-header">
       <span class="q-id qid-c">C1</span>
-      <div class="q-title">Hoeveel loodpunten heb je nodig?</div>
+      <div class="q-title">Hoeveel geprojecteerde punten heb je nodig?</div>
       <div class="q-hint">Een puntlaser projecteert vaste punten van vloer naar plafond (en zijwaarts). Hoe meer punten, hoe meer referentiepunten je tegelijk hebt voor complexere installaties.</div>
     </div>
     <div class="q-options">
@@ -1425,62 +1388,23 @@
       </div>
     </div>
     <div class="q-matching">
-      <div class="q-matching-label">Qonfi data matching — Aantal loodpunten</div>
+      <div class="q-matching-label">Qonfi data matching — Aantal geprojecteerde punten</div>
       <div class="match-group">
         <div class="match-option-name">3 punten</div>
-        <div class="match-rule"><span class="tag tag-hard">hard</span><span class="match-text">Aantal loodpunten == 3</span></div>
+        <div class="match-rule"><span class="tag tag-hard">hard</span><span class="match-text">Aantal geprojecteerde punten == 3</span></div>
       </div>
       <div class="match-group">
         <div class="match-option-name">5 punten</div>
-        <div class="match-rule"><span class="tag tag-hard">hard</span><span class="match-text">Aantal loodpunten == 5</span></div>
+        <div class="match-rule"><span class="tag tag-hard">hard</span><span class="match-text">Aantal geprojecteerde punten == 5</span></div>
       </div>
     </div>
     <div class="data-table-wrap">
       <div class="data-table-label">Datadekking puntlasers</div>
       <table class="data-table">
-        <tr><th>Model</th><th>Kleur</th><th>IP</th><th>Bereik</th><th>Loodpunten</th><th>Voeding</th><th>Nauwkeurigheid</th></tr>
+        <tr><th>Model</th><th>Kleur</th><th>IP</th><th>Bereik</th><th>Geprojecteerde punten</th><th>Voeding</th><th>Nauwkeurigheid</th></tr>
         <tr><td>GPL 3 G</td><td>Groen</td><td>IP65</td><td>30 m</td><td>3</td><td>2× AA</td><td>0,35 mm/m</td></tr>
         <tr><td>GPL 5 G</td><td>Groen</td><td>IP65</td><td>30 m</td><td>5</td><td>2× AA</td><td>0,35 mm/m</td></tr>
       </table>
-    </div>
-  </div>
-
-  <!-- C2 -->
-  <div class="q-card">
-    <div class="q-header">
-      <span class="q-id qid-c">C2</span>
-      <div class="q-title">Welke voeding past het best bij jou?</div>
-      <div class="q-hint">Beide puntlasers werken op AA-batterijen. Als je ook combis wil zien (kruislijnlaser + puntlaser in één), dan zijn er extra opties met platformaccu.</div>
-    </div>
-    <div class="q-options">
-      <div class="q-options-label">Antwoorden</div>
-      <div class="option-row">
-        <div class="option-bullet"></div>
-        <div class="option-text"><strong>AA-batterijen</strong><span>Beide GPL-modellen, eenvoudig en compact</span></div>
-      </div>
-      <div class="option-row">
-        <div class="option-bullet"></div>
-        <div class="option-text"><strong>Platformaccu (12V / 18V)</strong><span>Combilaser met puntlaserfunctie — bv. GCL 12V-50-22 CG of DeWalt DCLE14251GB</span></div>
-      </div>
-    </div>
-    <div class="q-matching">
-      <div class="q-matching-label">Qonfi data matching</div>
-      <div class="match-group">
-        <div class="match-option-name">AA-batterijen (pure puntlasers)</div>
-        <div class="match-rule"><span class="tag tag-hard">hard</span><span class="match-text">Voeding contains "AA"</span></div>
-        <div class="match-rule"><span class="tag tag-hard">hard</span><span class="match-text">Type laser contains "Puntlaser"</span></div>
-      </div>
-      <div class="match-group">
-        <div class="match-option-name">Platformaccu (combilasers met puntfunctie)</div>
-        <div class="match-rule"><span class="tag tag-hard">hard</span><span class="match-text">Voeding contains "12V Li-Ion" OR "18V Li-Ion"</span></div>
-        <div class="match-rule"><span class="tag tag-hard">hard</span><span class="match-text">Type laser contains "Puntlaser"</span></div>
-      </div>
-    </div>
-    <div class="note-box">
-      <strong>Conditionele vervolgvraag</strong> <span class="conditional-badge">conditioneel</span> — alleen bij keuze "Platformaccu":<br><br>
-      <div class="match-rule" style="margin-bottom:4px;"><span class="tag tag-hard">hard</span><span class="match-text">12V → Voeding contains "12V Li-Ion"</span></div>
-      <div class="match-rule" style="margin-bottom:4px;"><span class="tag tag-hard">hard</span><span class="match-text">18V → Voeding contains "18V Li-Ion"</span></div>
-      <div class="match-rule"><span class="tag tag-none">geen filter</span><span class="match-text">Geen voorkeur → geen hard filter</span></div>
     </div>
   </div>
   </div><!-- /flow-group C -->
@@ -1495,7 +1419,7 @@
     <span class="sh-letter">D</span>
     <div class="sh-info">
       <h2>Flow D — Lijnlaser</h2>
-      <p>3 vragen · Rechte referentielijnen binnenshuis</p>
+      <p>2 vragen · Rechte referentielijnen binnenshuis</p>
     </div>
   </div>
 
@@ -1591,37 +1515,6 @@
       </div>
     </div>
   </div>
-
-  <!-- D3 -->
-  <div class="q-card">
-    <div class="q-header">
-      <span class="q-id qid-d">D3</span>
-      <div class="q-title">Welke voeding past het best bij jou?</div>
-      <div class="q-hint">De meeste lijnlasers werken op AA-batterijen. De PLL 360-1G heeft een geïntegreerde oplaadbare accu.</div>
-    </div>
-    <div class="q-options">
-      <div class="q-options-label">Antwoorden</div>
-      <div class="option-row">
-        <div class="option-bullet"></div>
-        <div class="option-text"><strong>AA-batterijen</strong><span>Standaard, overal verkrijgbaar</span></div>
-      </div>
-      <div class="option-row">
-        <div class="option-bullet"></div>
-        <div class="option-text"><strong>Geïntegreerde oplaadbare accu</strong><span>Handig als je de laser vaak gebruikt — opladen via USB-C (PLL 360-1G)</span></div>
-      </div>
-    </div>
-    <div class="q-matching">
-      <div class="q-matching-label">Qonfi data matching — Voeding</div>
-      <div class="match-group">
-        <div class="match-option-name">AA-batterijen</div>
-        <div class="match-rule"><span class="tag tag-hard">hard</span><span class="match-text">Voeding contains "AA"</span></div>
-      </div>
-      <div class="match-group">
-        <div class="match-option-name">Geïntegreerde oplaadbare accu</div>
-        <div class="match-rule"><span class="tag tag-hard">hard</span><span class="match-text">Voeding contains "Li-Ion (geintegreerd)"</span></div>
-      </div>
-    </div>
-  </div>
   </div><!-- /flow-group D -->
 
   <div class="flow-divider"></div>
@@ -1684,7 +1577,7 @@
       <tr>
         <td><strong>Flow A</strong></td>
         <td>Kruislijnlaser</td>
-        <td>5 (+ 1 conditioneel)</td>
+        <td>4</td>
         <td><input class="uuid-input" type="text" placeholder="TO_FILL" /></td>
       </tr>
       <tr>
@@ -1696,13 +1589,13 @@
       <tr>
         <td><strong>Flow C</strong></td>
         <td>Puntlaser</td>
-        <td>2 (+ 1 conditioneel)</td>
+        <td>1</td>
         <td><input class="uuid-input" type="text" placeholder="TO_FILL" /></td>
       </tr>
       <tr>
         <td><strong>Flow D</strong></td>
         <td>Lijnlaser</td>
-        <td>3 (D2 conditioneel)</td>
+        <td>2 (D2 conditioneel)</td>
         <td><input class="uuid-input" type="text" placeholder="TO_FILL" /></td>
       </tr>
     </table>
