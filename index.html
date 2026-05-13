@@ -1,0 +1,1731 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LASERS — Guided Selling · Qonfi Implementatiegids</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --klium: #e63329;
+      --klium-dark: #b8261d;
+      --klium-light: #ffeeed;
+      --bg: #f0f2f5;
+      --white: #ffffff;
+      --text: #111827;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+      --border-strong: #d1d5db;
+      --hard: #166534;
+      --hard-bg: #dcfce7;
+      --hard-ring: #4ade80;
+      --ranking: #92400e;
+      --ranking-bg: #fef3c7;
+      --ranking-ring: #fbbf24;
+      --note-bg: #eef2ff;
+      --note-border: #6366f1;
+      --flow-a: #0369a1;
+      --flow-a-light: #e0f2fe;
+      --flow-a-mid: #7dd3fc;
+      --flow-b: #6d28d9;
+      --flow-b-light: #ede9fe;
+      --flow-b-mid: #c4b5fd;
+      --flow-c: #065f46;
+      --flow-c-light: #d1fae5;
+      --flow-c-mid: #6ee7b7;
+      --flow-d: #92400e;
+      --flow-d-light: #fef3c7;
+      --flow-d-mid: #fcd34d;
+      --routing: #e63329;
+      --routing-light: #fff1f0;
+      --routing-mid: #fca5a5;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.07), 0 1px 2px rgba(0,0,0,0.05);
+      --shadow-md: 0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.05);
+      --shadow-lg: 0 10px 24px rgba(0,0,0,0.1), 0 4px 8px rgba(0,0,0,0.06);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 14px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── TOP BAR ── */
+    .topbar {
+      background: linear-gradient(135deg, #c0201a 0%, #e63329 50%, #f04840 100%);
+      color: white;
+      padding: 0 32px;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 16px rgba(230,51,41,0.35);
+    }
+    .topbar::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 1px;
+      background: rgba(255,255,255,0.15);
+    }
+    .topbar-logo {
+      font-weight: 900;
+      font-size: 17px;
+      letter-spacing: -0.5px;
+      background: rgba(255,255,255,0.15);
+      padding: 4px 12px;
+      border-radius: 6px;
+    }
+    .topbar-sep { opacity: 0.3; font-size: 18px; font-weight: 300; }
+    .topbar-title {
+      font-size: 13px;
+      font-weight: 500;
+      opacity: 0.9;
+    }
+    .topbar-badge {
+      margin-left: auto;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.25);
+      border-radius: 20px;
+      padding: 4px 14px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    /* ── LAYOUT ── */
+    .container {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 36px 24px 100px;
+    }
+
+    /* ── PAGE HEADER ── */
+    .page-header {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 32px 36px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow-md);
+      position: relative;
+      overflow: hidden;
+    }
+    .page-header::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--klium) 0%, #f87171 50%, var(--klium) 100%);
+    }
+    .page-header::after {
+      content: '⚡';
+      position: absolute;
+      right: 32px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 64px;
+      opacity: 0.04;
+    }
+    .page-header h1 {
+      font-size: 24px;
+      font-weight: 900;
+      margin-bottom: 8px;
+      letter-spacing: -0.5px;
+      color: var(--text);
+    }
+    .page-header p { color: var(--muted); font-size: 13px; max-width: 560px; }
+
+    /* ── OVERVIEW ── */
+    .overview {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 24px 28px;
+      margin-bottom: 28px;
+      box-shadow: var(--shadow-sm);
+    }
+    .overview h2 {
+      font-size: 10px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      margin-bottom: 18px;
+    }
+    .flow-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+    }
+    .flow-card {
+      border-radius: 14px;
+      padding: 18px 12px 16px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.15s, box-shadow 0.15s;
+      cursor: default;
+    }
+    .flow-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+    .flow-card::before {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+    }
+    .flow-card .flow-letter {
+      font-size: 30px;
+      font-weight: 900;
+      display: block;
+      margin-bottom: 6px;
+      line-height: 1;
+    }
+    .flow-card .flow-name { font-weight: 700; font-size: 12px; margin-bottom: 3px; }
+    .flow-card .flow-q { font-size: 11px; color: var(--muted); }
+    .fc-routing { background: linear-gradient(145deg, #fff5f5, var(--routing-light)); border: 1.5px solid var(--routing-mid); }
+    .fc-routing .flow-letter { color: var(--routing); }
+    .fc-routing::before { background: var(--routing); }
+    .fc-a { background: linear-gradient(145deg, #f0f9ff, var(--flow-a-light)); border: 1.5px solid var(--flow-a-mid); }
+    .fc-a .flow-letter { color: var(--flow-a); }
+    .fc-a::before { background: var(--flow-a); }
+    .fc-b { background: linear-gradient(145deg, #faf5ff, var(--flow-b-light)); border: 1.5px solid var(--flow-b-mid); }
+    .fc-b .flow-letter { color: var(--flow-b); }
+    .fc-b::before { background: var(--flow-b); }
+    .fc-c { background: linear-gradient(145deg, #f0fdf6, var(--flow-c-light)); border: 1.5px solid var(--flow-c-mid); }
+    .fc-c .flow-letter { color: var(--flow-c); }
+    .fc-c::before { background: var(--flow-c); }
+    .fc-d { background: linear-gradient(145deg, #fffdf0, var(--flow-d-light)); border: 1.5px solid var(--flow-d-mid); }
+    .fc-d .flow-letter { color: var(--flow-d); }
+    .fc-d::before { background: var(--flow-d); }
+
+    /* ── SECTION HEADER ── */
+    .section-header {
+      border-radius: 14px 14px 0 0;
+      padding: 20px 28px;
+      margin-bottom: 0;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      position: relative;
+      overflow: hidden;
+    }
+    .section-header::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 1px;
+      background: rgba(0,0,0,0.06);
+    }
+    .section-header .sh-letter {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 26px;
+      font-weight: 900;
+      flex-shrink: 0;
+      background: rgba(255,255,255,0.45);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .section-header .sh-info h2 { font-size: 19px; font-weight: 800; letter-spacing: -0.3px; }
+    .section-header .sh-info p { font-size: 12px; opacity: 0.7; margin-top: 2px; font-weight: 500; }
+    .sh-routing {
+      background: linear-gradient(135deg, #ffeeed 0%, #ffe0de 100%);
+      color: #9b1010;
+    }
+    .sh-a {
+      background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+      color: #1e3a5f;
+    }
+    .sh-b {
+      background: linear-gradient(135deg, #ede9fe 0%, #ddd6fe 100%);
+      color: #3b1a6e;
+    }
+    .sh-c {
+      background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+      color: #064e3b;
+    }
+    .sh-d {
+      background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+      color: #78350f;
+    }
+
+    /* ── FLOW GROUP WRAPPER ── */
+    .flow-group {
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+      margin-bottom: 8px;
+    }
+    .flow-group .q-card {
+      border-radius: 0;
+      margin-bottom: 0;
+      border: none;
+      border-top: 1px solid var(--border);
+      box-shadow: none;
+    }
+    .flow-group .q-card:last-child {
+      border-radius: 0 0 16px 16px;
+    }
+
+    /* ── QUESTION CARD ── */
+    .q-card {
+      background: var(--white);
+      border-radius: 14px;
+      margin-bottom: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
+    }
+    .q-header {
+      padding: 18px 24px 14px;
+      border-bottom: 1px solid #f3f4f6;
+      position: relative;
+    }
+    .q-id {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 10px;
+      font-weight: 800;
+      border-radius: 6px;
+      padding: 3px 10px;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+    }
+    .qid-routing { background: #ffe4e1; color: #9b1010; border: 1px solid #fca5a5; }
+    .qid-a { background: #dbeafe; color: #1e40af; border: 1px solid #93c5fd; }
+    .qid-b { background: #ede9fe; color: #5b21b6; border: 1px solid #c4b5fd; }
+    .qid-c { background: #d1fae5; color: #065f46; border: 1px solid #6ee7b7; }
+    .qid-d { background: #fef3c7; color: #92400e; border: 1px solid #fcd34d; }
+
+    .q-title {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 6px;
+      letter-spacing: -0.2px;
+    }
+    .q-hint {
+      font-size: 12px;
+      color: var(--muted);
+      font-style: italic;
+      line-height: 1.5;
+      border-left: 3px solid #e5e7eb;
+      padding-left: 10px;
+      margin-top: 4px;
+    }
+
+    /* ── OPTIONS ── */
+    .q-options {
+      padding: 16px 24px;
+      border-bottom: 1px solid #f3f4f6;
+      background: #fafafa;
+    }
+    .q-options-label {
+      font-size: 10px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+    .option-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 10px 14px;
+      border-radius: 10px;
+      margin-bottom: 7px;
+      background: var(--white);
+      border: 1.5px solid #e5e7eb;
+      transition: border-color 0.1s, box-shadow 0.1s;
+    }
+    .option-row:last-child { margin-bottom: 0; }
+    .option-row:hover { border-color: #d1d5db; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+    .option-bullet {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--bg);
+      flex-shrink: 0;
+      margin-top: 2px;
+      border: 2px solid #d1d5db;
+    }
+    .option-text { font-size: 13px; flex: 1; }
+    .option-text strong { display: block; font-weight: 700; color: var(--text); }
+    .option-text span { color: var(--muted); font-size: 12px; }
+    .option-arrow {
+      font-size: 11px;
+      font-weight: 800;
+      padding: 3px 10px;
+      border-radius: 6px;
+      margin-top: 2px;
+      flex-shrink: 0;
+      letter-spacing: 0.01em;
+    }
+    .arrow-a { background: #dbeafe; color: #1e40af; border: 1px solid #93c5fd; }
+    .arrow-b { background: #ede9fe; color: #5b21b6; border: 1px solid #c4b5fd; }
+    .arrow-c { background: #d1fae5; color: #065f46; border: 1px solid #6ee7b7; }
+    .arrow-d { background: #fef3c7; color: #92400e; border: 1px solid #fcd34d; }
+
+    /* ── QONFI MATCHING ── */
+    .q-matching {
+      padding: 18px 24px;
+    }
+    .q-matching-label {
+      font-size: 10px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .q-matching-label::before {
+      content: '';
+      display: inline-block;
+      width: 14px;
+      height: 2px;
+      background: currentColor;
+      opacity: 0.5;
+    }
+    .match-group {
+      margin-bottom: 14px;
+      padding: 12px 14px;
+      background: #f9fafb;
+      border-radius: 10px;
+      border: 1px solid #f3f4f6;
+    }
+    .match-group:last-child { margin-bottom: 0; }
+    .match-option-name {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .match-option-name::before {
+      content: '▸';
+      font-size: 10px;
+      color: var(--muted);
+    }
+    .match-rule {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      margin-bottom: 5px;
+    }
+    .match-rule:last-child { margin-bottom: 0; }
+    .tag {
+      font-size: 9px;
+      font-weight: 800;
+      padding: 3px 8px;
+      border-radius: 5px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .tag-hard {
+      background: #dcfce7;
+      color: #15803d;
+      border: 1px solid #86efac;
+    }
+    .tag-ranking {
+      background: #fef9c3;
+      color: #a16207;
+      border: 1px solid #fde047;
+    }
+    .tag-none {
+      background: #f3f4f6;
+      color: #9ca3af;
+      border: 1px solid #e5e7eb;
+    }
+    .match-text {
+      font-size: 12px;
+      font-family: 'JetBrains Mono', 'Courier New', monospace;
+      background: #1e293b;
+      color: #e2e8f0;
+      padding: 3px 10px;
+      border-radius: 5px;
+      line-height: 1.5;
+    }
+
+    /* ── NOTE BOX ── */
+    .note-box {
+      background: linear-gradient(135deg, #eef2ff, #e0e7ff);
+      border-left: 4px solid #6366f1;
+      border-radius: 0 10px 10px 0;
+      padding: 12px 16px;
+      margin: 0 24px 16px;
+      font-size: 12px;
+      color: #312e81;
+      line-height: 1.6;
+    }
+    .note-box strong { font-weight: 700; }
+
+    /* ── DATA TABLE ── */
+    .data-table-wrap {
+      padding: 0 24px 20px;
+    }
+    .data-table-label {
+      font-size: 10px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+    .data-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      font-size: 12px;
+      border: 1px solid #e5e7eb;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .data-table th {
+      background: #f1f5f9;
+      text-align: left;
+      padding: 8px 12px;
+      font-weight: 700;
+      color: #475569;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    .data-table td {
+      padding: 7px 12px;
+      border-bottom: 1px solid #f1f5f9;
+      vertical-align: top;
+      color: var(--text);
+    }
+    .data-table tr:last-child td { border-bottom: none; }
+    .data-table tbody tr:hover td { background: #f8fafc; }
+    code {
+      font-family: 'JetBrains Mono', 'Courier New', monospace;
+      background: #1e293b;
+      color: #94a3b8;
+      padding: 1px 6px;
+      border-radius: 4px;
+      font-size: 11px;
+    }
+
+    /* ── RESULT STRATEGY ── */
+    .result-section {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 28px;
+      margin-top: 32px;
+      box-shadow: var(--shadow-md);
+      position: relative;
+      overflow: hidden;
+    }
+    .result-section::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #4ade80, #60a5fa, #f59e0b);
+    }
+    .result-section h2 { font-size: 15px; font-weight: 800; margin-bottom: 20px; letter-spacing: -0.2px; }
+    .result-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+    .result-card {
+      border-radius: 12px;
+      padding: 18px;
+      border: 1.5px solid transparent;
+      position: relative;
+      overflow: hidden;
+    }
+    .result-card .rc-label {
+      font-size: 10px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .rc-best { background: linear-gradient(145deg, #f0fdf4, #dcfce7); border-color: #86efac; }
+    .rc-best .rc-label { color: #15803d; }
+    .rc-strong { background: linear-gradient(145deg, #eff6ff, #dbeafe); border-color: #93c5fd; }
+    .rc-strong .rc-label { color: #1d4ed8; }
+    .rc-value { background: linear-gradient(145deg, #fefce8, #fef9c3); border-color: #fde047; }
+    .rc-value .rc-label { color: #a16207; }
+    .result-card p { font-size: 12px; color: var(--muted); font-style: italic; margin-bottom: 10px; }
+    .result-card .rc-copy {
+      font-size: 12px;
+      color: var(--text);
+      background: rgba(255,255,255,0.6);
+      padding: 10px 12px;
+      border-radius: 8px;
+      line-height: 1.5;
+      font-style: italic;
+      border-left: 3px solid rgba(0,0,0,0.1);
+    }
+
+    /* ── TILE SECTION ── */
+    .tile-section {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 28px;
+      margin-top: 16px;
+      box-shadow: var(--shadow-md);
+    }
+    .tile-section h2 { font-size: 15px; font-weight: 800; margin-bottom: 20px; }
+    .tile-preview {
+      background: linear-gradient(135deg, #fff5f5, #fff0ef);
+      border: 2px solid #fca5a5;
+      border-radius: 14px;
+      padding: 24px;
+      max-width: 380px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 16px rgba(230,51,41,0.12);
+      position: relative;
+      overflow: hidden;
+    }
+    .tile-preview::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--klium), #f87171);
+    }
+    .tile-preview .tp-type {
+      font-size: 10px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--klium);
+      margin-bottom: 10px;
+    }
+    .tile-preview h3 { font-size: 17px; font-weight: 800; margin-bottom: 10px; letter-spacing: -0.3px; }
+    .tile-preview p { font-size: 13px; color: var(--muted); margin-bottom: 18px; line-height: 1.5; }
+    .tile-preview button {
+      background: linear-gradient(135deg, #e63329, #c0201a);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 10px 20px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: default;
+      box-shadow: 0 3px 10px rgba(230,51,41,0.3);
+      font-family: 'Inter', sans-serif;
+    }
+    .uuid-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 12px;
+      font-size: 12px;
+      color: var(--muted);
+      flex-wrap: wrap;
+    }
+    .uuid-badge {
+      background: #f1f5f9;
+      border: 1px solid #e2e8f0;
+      border-radius: 5px;
+      padding: 3px 10px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: #64748b;
+    }
+
+    /* ── IMPL NOTES ── */
+    .impl-section {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 28px;
+      margin-top: 16px;
+      box-shadow: var(--shadow-sm);
+    }
+    .impl-section h2 { font-size: 15px; font-weight: 800; margin-bottom: 16px; }
+    .impl-section ul { padding-left: 0; list-style: none; }
+    .impl-section li {
+      font-size: 13px;
+      color: var(--text);
+      margin-bottom: 10px;
+      padding: 10px 14px 10px 40px;
+      position: relative;
+      background: #f9fafb;
+      border-radius: 8px;
+      border: 1px solid #f3f4f6;
+      line-height: 1.5;
+    }
+    .impl-section li::before {
+      content: '→';
+      position: absolute;
+      left: 14px;
+      top: 10px;
+      font-weight: 700;
+      color: var(--klium);
+    }
+
+    /* ── GUIDE UUID TABLE ── */
+    .uuid-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      font-size: 13px;
+      margin-top: 8px;
+      border: 1px solid #e5e7eb;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .uuid-table th {
+      text-align: left;
+      padding: 10px 14px;
+      background: #f1f5f9;
+      font-size: 10px;
+      font-weight: 800;
+      color: #64748b;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    .uuid-table td {
+      padding: 10px 14px;
+      border-bottom: 1px solid #f1f5f9;
+      vertical-align: middle;
+    }
+    .uuid-table tr:last-child td { border-bottom: none; }
+    .uuid-input {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: #64748b;
+      background: #f8fafc;
+      border: 1.5px dashed #cbd5e1;
+      border-radius: 6px;
+      padding: 5px 12px;
+      width: 240px;
+      outline: none;
+    }
+    .uuid-input:focus {
+      border-color: #6366f1;
+      background: white;
+      color: #1e293b;
+    }
+
+    /* ── DIVIDER ── */
+    .flow-divider { height: 36px; }
+
+    /* ── LEGEND ── */
+    .legend {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      font-size: 12px;
+      margin-bottom: 28px;
+      background: var(--white);
+      padding: 14px 20px;
+      border-radius: 12px;
+      box-shadow: var(--shadow-sm);
+      align-items: center;
+    }
+    .legend::before {
+      content: 'LEGENDA';
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin-right: 6px;
+    }
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 3px 10px 3px 3px;
+      background: #f9fafb;
+      border-radius: 20px;
+      border: 1px solid #f3f4f6;
+    }
+
+    /* ── CONDITIONAL BADGE ── */
+    .conditional-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      background: linear-gradient(135deg, #fff7ed, #ffedd5);
+      border: 1px solid #fed7aa;
+      color: #c2410c;
+      font-size: 9px;
+      font-weight: 800;
+      padding: 2px 8px;
+      border-radius: 5px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-left: 8px;
+      vertical-align: middle;
+    }
+    .conditional-badge::before { content: '⚠'; font-size: 9px; }
+  </style>
+</head>
+<body>
+
+<div class="topbar">
+  <span class="topbar-logo">KLIUM</span>
+  <span class="topbar-sep">|</span>
+  <span class="topbar-title">Guided Selling · LASERS — Qonfi Implementatiegids</span>
+  <span class="topbar-badge">v2 · mei 2026</span>
+</div>
+
+<div class="container">
+
+  <!-- PAGE HEADER -->
+  <div class="page-header">
+    <h1>Guided Selling: LASERS</h1>
+    <p>Implementatiedocument voor de Qonfi app — 1 routeringsvraag + 4 type-specifieke flows. Alle Qonfi-filtercodes staan per vraag en per antwoord opgesomd.</p>
+  </div>
+
+  <!-- OVERVIEW -->
+  <div class="overview">
+    <h2>Structuuroverzicht</h2>
+    <div class="flow-grid">
+      <div class="flow-card fc-routing">
+        <span class="flow-letter">↗</span>
+        <div class="flow-name">Routering</div>
+        <div class="flow-q">Tile op categoriepagina</div>
+      </div>
+      <div class="flow-card fc-a">
+        <span class="flow-letter">A</span>
+        <div class="flow-name">Kruislijnlaser</div>
+        <div class="flow-q">5 vragen</div>
+      </div>
+      <div class="flow-card fc-b">
+        <span class="flow-letter">B</span>
+        <div class="flow-name">Rotatielaser</div>
+        <div class="flow-q">4 vragen</div>
+      </div>
+      <div class="flow-card fc-c">
+        <span class="flow-letter">C</span>
+        <div class="flow-name">Puntlaser</div>
+        <div class="flow-q">2 vragen</div>
+      </div>
+      <div class="flow-card fc-d">
+        <span class="flow-letter">D</span>
+        <div class="flow-name">Lijnlaser</div>
+        <div class="flow-q">3 vragen</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LEGEND -->
+  <div class="legend">
+    <div class="legend-item"><span class="tag tag-hard">hard</span> Verplicht filter — elimineert producten</div>
+    <div class="legend-item"><span class="tag tag-ranking">ranking</span> Voorkeur — verhoogt score, elimineert niet</div>
+    <div class="legend-item"><span class="tag tag-none">geen filter</span> Geen actief filter voor deze keuze</div>
+    <div class="legend-item"><span class="conditional-badge">conditioneel</span> Vraag alleen tonen onder bepaalde conditie</div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════ -->
+  <!-- ROUTERINGSVRAAG -->
+  <!-- ══════════════════════════════════════════════════════ -->
+  <div class="flow-group">
+  <div class="section-header sh-routing">
+    <span class="sh-letter">↗</span>
+    <div class="sh-info">
+      <h2>Routeringsvraag — Hero tile op categoriepagina</h2>
+      <p>Stuurt de klant naar de juiste type-specifieke flow</p>
+    </div>
+  </div>
+
+  <div class="q-card">
+    <div class="q-header">
+      <span class="q-id qid-routing">Routering</span>
+      <div class="q-title">Wat ga je doen met de laser?</div>
+      <div class="q-hint">Vertel ons wat je gaat doen, dan sturen we je meteen naar de juiste keuzehulp — zonder overbodige vragen.</div>
+    </div>
+
+    <div class="q-options">
+      <div class="q-options-label">Antwoorden</div>
+
+      <div class="option-row">
+        <div class="option-bullet"></div>
+        <div class="option-text">
+          <strong>Waterpas zetten, tegels of wanden uitlijnen</strong>
+          <span>Binnenshuis uitlijnen, nivelleren, bevestigen</span>
+        </div>
+        <span class="option-arrow arrow-a">→ Flow A: Kruislijnlaser</span>
+      </div>
+
+      <div class="option-row">
+        <div class="option-bullet"></div>
+        <div class="option-text">
+          <strong>Een grote ruimte of buitenterrein uitzetten</strong>
+          <span>360° nivelleren op werf of open terrein</span>
+        </div>
+        <span class="option-arrow arrow-b">→ Flow B: Rotatielaser</span>
+      </div>
+
+      <div class="option-row">
+        <div class="option-bullet"></div>
+        <div class="option-text">
+          <strong>Punten nauwkeurig overbrengen van vloer naar plafond</strong>
+          <span>Loodpuntoverdracht voor installaties en elektriciteit</span>
+        </div>
+        <span class="option-arrow arrow-c">→ Flow C: Puntlaser</span>
+      </div>
+
+      <div class="option-row">
+        <div class="option-bullet"></div>
+        <div class="option-text">
+          <strong>Één rechte lijn trekken over een lange afstand</strong>
+          <span>Tegels, gordijnrails, stopcontacten uitlijnen</span>
+        </div>
+        <span class="option-arrow arrow-d">→ Flow D: Lijnlaser</span>
+      </div>
+
+      <div class="option-row">
+        <div class="option-bullet"></div>
+        <div class="option-text">
+          <strong>Weet ik nog niet</strong>
+          <span>Toon typeoverzicht met uitleg → klant kiest daarna</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-matching">
+      <div class="q-matching-label">Qonfi data matching — Type laser (altijd <code>contains</code>, niet exact)</div>
+
+      <div class="match-group">
+        <div class="match-option-name">Waterpas / uitlijnen</div>
+        <div class="match-rule"><span class="tag tag-hard">hard</span><span class="match-text">Type laser contains "Kruislijnlaser"</span></div>
+      </div>
+      <div class="match-group">
+        <div class="match-option-name">Ruimte uitzetten / buiten</div>
+        <div class="match-rule"><span class="tag tag-hard">hard</span><span class="match-text">Type laser contains "Rotatielaser"</span></div>
+      </div>
+      <div class="match-group">
+        <div class="match-option-name">Punten overbrengen</div>
+        <div class="match-rule"><span class="tag tag-hard">hard</span><span class="match-text">Type laser contains "Puntlaser"</span></div>
+      </div>
+      <div class="match-group">
+        <div class="match-option-name">Rechte lijn</div>
+        <div class="match-rule"><span class="tag tag-hard">hard</span><span class="match-text">Type laser contains "Lijnlaser"</span></div>
+      </div>
+      <div class="match-group">
+        <div class="match-option-name">Weet ik nog niet</div>
+        <div class="match-rule"><span class="tag tag-none">geen filter</span><span class="match-text">Ranking boost: Kruislijnlaser (+2), Rotatielaser (+1)</span></div>
+      </div>
+    </div>
+
+    <div class="note-box">
+      <strong>Letop:</strong> Gebruik altijd <code>contains</code> op Type laser — niet exact gelijk. Sommige producten hebben meerdere types in 1 veld gescheiden door <code>;</code> (bv. <code>Kruislijnlaser; Puntlaser</code>).
+    </div>
+  </div>
+  </div><!-- /flow-group routing -->
+
+  <div class="flow-divider"></div>
+
+  <!-- ══════════════════════════════════════════════════════ -->
+  <!-- FLOW A: KRUISLIJNLASER -->
+  <!-- ══════════════════════════════════════════════════════ -->
+  <div class="flow-group">
+  <div class="section-header sh-a">
+    <span class="sh-letter">A</span>
+    <div class="sh-info">
+      <h2>Flow A — Kruislijnlaser</h2>
+      <p>5 vragen · Uitlijnen, tegelen, waterpas zetten, binnenwerk</p>
+    </div>
+  </div>
+
+  <!-- A1 -->
+  <div class="q-card">
+    <div class="q-header">
+      <span class="q-id qid-a">A1</span>
+      <div class="q-title">Waar gebruik je de laser het meest?</div>
+      <div class="q-hint">Je werkomgeving bepaalt hoeveel bescherming en zichtbaarheid je nodig hebt. Consumentenmodellen voor binnenshuis hebben vaak geen IP-bescherming — dat is volkomen normaal voor die klussen.</div>
+    </div>
+    <div class="q-options">
+      <div class="q-options-label">Antwoorden</div>
+      <div class="option-row">
+        <div class="option-bullet"></div>
+        <div class="option-text"><strong>Alleen binnen</strong><span>bv. een woning, appartement of winkelruimte (doe-het-zelver of lichte klus)</span></div>
+      </div>
+      <div class="option-row">
+        <div class="option-bullet"></div>
+        <div class="option-text"><strong>Professioneel binnen of ook buiten</strong><span>bv. op een werf, in een nieuwbouw of van binnen naar buiten</span></div>
+      </div>
+      <div class="option-row">
+        <div class="option-bullet"></div>
+        <div class="option-text"><strong>Vooral buiten</strong><span>bv. op een open terrein, bij ruwbouw of wegenis</span></div>
+      </div>
+    </div>
+    <div class="q-matching">
+      <div class="q-matching-label">Qonfi data matching</div>
+      <div class="match-group">
+        <div class="match-option-name">Alleen binnen (doe-het-zelver)</div>
+        <div class="match-rule"><span class="tag tag-none">geen filter</span><span class="match-text">Inclusief modellen zonder IP-rating</span></div>
+        <div class="match-rule"><span class="tag tag-ranking">ranking</span><span class="match-text">Kleur (laserstralen) == "Groen"</span></div>
+      </div>
+      <div class="match-group">
+        <div class="match-option-name">Professioneel binnen of ook buiten</div>
+        <div class="match-rule"><span class="tag tag-hard">hard</span><span class="match-text">Beschermingsklasse IP >= IP54</span></div>
+        <div class="match-rule"><span class="tag tag-ranking">ranking</span><span class="match-text">Max. bereik met ontvanger >= 50 m</span></div>
+      </div>
+      <div class="match-group">
+        <div class="match-option-name">Vooral buiten</div>
+        <div class="match-rule"><span class="tag tag-hard">hard</span><span class="match-text">Beschermingsklasse IP >= IP65</span></div>
+      </div>
+    </div>
+    <div class="data-table-wrap">
+      <div class="data-table-label">Datadekking IP-waarden (referentie)</div>
+      <table class="data-table">
+        <tr><th>IP-waarde</th><th>Modellen</th><th>Gebruik</th></tr>
+        <tr><td><code>—</code> (geen)</td><td>Quigo, UniversalLevel, PLL 360-1, AdvancedLevel 2G</td><td>Alleen binnen, doe-het-zelver</td></tr>
+        <tr><td><code>IP54</code></td><td>GCL 2-15, GCL 2-50, GLL 3-50, GLL 3-80, GLL 2-10</td><td>Professioneel, stof + spatwater</td></tr>
+        <tr><td><code>IP64</code></td><td>GCL 2-50 G, GLL 2-15 G</td><td>Professioneel, stofvrij + spatwater</td></tr>
+        <tr><td><code>IP65</code></td><td>GCL 12V-50-22 CG, GLL 12V-100-33 CG, GLL 18V-120-33 CG, GLL 20-22 G, GLL 80-33 G</td><td>Zwaar professioneel, stof + waterstralen</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- A2 -->
+  <div class="q-card">
+    <div class="q-header">
+      <span class="q-id qid-a">A2</span>
+      <div class="q-title">Welke kleur laserstraal heb je liever?</div>
+      <div class="q-hint">Groen is het meest zichtbaar voor het oog, ook in verlichte ruimtes — maar kost doorgaans meer. Rood is de klassieke keuze: betrouwbaar en betaalbaarder.</div>
+    </div>
+    <div class="q-options">
+      <div class="q-options-label">Antwoorden</div>
+      <div class="option-row">
+        <div class="option-bullet"></div>
+        <div class="option-text"><strong>Groen</strong><span>Beste zichtbaarheid binnenshuis, ook bij veel licht</span></div>
+      </div>
+      <div class="option-row">
+        <div class="option-bullet"></div>
+        <div class="option-text"><strong>Rood</strong><span>De klassieke keuze, goed zichtbaar en doorgaans goedkoper</span></div>
+      </div>
+      <div class="option-row">
+        <div class="option-bullet"></div>
+        <div class="option-text"><strong>Geen voorkeur</strong><span>Toon me alle opties</span></div>
+      </div>
+    </div>
+    <div class="q-matching">
+      <div class="q-matching-label">Qonfi data matching</div>
+      <div class="match-group">
+        <div class="match-option-name">Groen</div>
+        <div class="match-rule"><span class="tag tag-hard">hard</span><span class="match-text">Kleur (laserstralen) == "Groen"</span></div>
+      </div>
+      <div class="match-group">
+        <div class="match-option-name">Rood</div>
+        <div class="match-rule"><span class="tag tag-hard">hard</span><span class="match-text">Kleur (laserstralen) == "Rood"</span></div>
+      </div>
+      <div class="match-group">
+        <div class="match-option-name">Geen voorkeur</div>
+        <div class="match-rule"><span class="tag tag-none">geen filter</span><span class="match-text">Geen filter op kleur</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- A3 -->
+  <div class="q-card">
+    <div class="q-header">
+      <span class="q-id qid-a">A3</span>
+      <div class="q-title">Op hoeveel vlakken moet je tegelijk werken?</div>
+      <div class="q-hint">Zo vermijden we een model dat te beperkt is voor je klus, of net onnodig uitgebreid.</div>
+    </div>
+    <div class="q-options">
+      <div class="q-options-label">Antwoorden</div>
+      <div class="option-row">
+        <div class="option-bullet"></div>
+        <div class="option-text"><strong>Op 1 vlak</strong><span>Standaard kruislijn voor uitlijnen op 1 muur of richting</span></div>
+      </div>
+      <div class="option-row">
+        <div class="option-bullet"></div>
+        <div class="option-text"><strong>Op meerdere vlakken tegelijk</strong><span>bv. hoeken, aansluitende wanden of plafond én muur</span></div>
+      </div>
+      <div class="option-row">
+        <div class="option-bullet"></div>
+        <div class="option-text"><strong>Volledige ruimtedekking (360°)</strong><span>Rondom zonder herpositioneren</span></div>
+      </div>
+      <div class="option-row">
+        <div class="option-bullet"></div>
+        <div class="option-text"><strong>Geen voorkeur</strong><span>Toon me alle opties</span></div>
+      </div>
+    </div>
+    <div class="q-matching">
+      <div class="q-matching-label">Qonfi data matching — Projectie (laserstralen)</div>
+      <div class="match-group">
+        <div class="match-option-name">Op 1 vlak</div>
+        <div class="match-rule"><span class="tag tag-hard">hard</span><span class="match-text">Projectie (laserstralen) contains "1 horizontaal, 1 verticaal"</span></div>
+        <div class="match-rule"><span class="tag tag-ranking">ranking</span><span class="match-text">Projectie (laserstralen) contains "2x 360°, 1 horizontaal, 1 verticaal"</span></div>
+      </div>
+      <div class="match-group">
+        <div class="match-option-name">Op meerdere vlakken</div>
+        <div class="match-rule"><span class="tag tag-hard">hard</span><span class="match-text">Projectie (laserstralen) contains "1 horizontaal, 2 verticaal"</span></div>
+        <div class="match-rule"><span class="tag tag-hard">hard</span><span class="match-text">Projectie (laserstralen) contains "2 verticaal + 1 lijn horizontaal"</span></div>
+        <div class="match-rule"><span class="tag tag-ranking">ranking</span><span class="match-text">Projectie (laserstralen) contains "3x 180°"</span></div>
+        <div class="match-rule"><span class="tag tag-ranking">ranking</span><span class="match-text">Projectie (laserstralen) contains "3 lijnen horizontaal"</span></div>
+      </div>
+      <div class="match-group">
+        <div class="match-option-name">Volledige 360° dekking</div>
+        <div class="match-rule"><span class="tag tag-hard">hard</span><span class="match-text">Projectie (laserstralen) contains "360"</span></div>
+        <div class="match-rule"><span class="tag tag-ranking">ranking</span><span class="match-text">Projectie (laserstralen) contains "3x 360°" OR "4x 360°"</span></div>
+      </div>
+      <div class="match-group">
+        <div class="match-option-name">Geen voorkeur</div>
+        <div class="match-rule"><span class="tag tag-none">geen filter</span><span class="match-text">Geen filter op Projectie (laserstralen)</span></div>
+      </div>
+    </div>
+    <div class="note-box">
+      <strong>Letop:</strong> Waarde <code>0</code> in Projectie (laserstralen) behandelen als unknown — geen hard filter, maar lagere ranking.
+    </div>
+  </div>
+
+  <!-- A4 -->
+  <div class="q-card">
+    <div class="q-header">
+      <span class="q-id qid-a">A4</span>
+      <div class="q-title">Welke nauwkeurigheid verwacht je?</div>
+      <div class="q-hint">Voor fijne afwerking heb je meer precisie nodig dan voor algemeen uitlijnwerk. De meeste professionele kruislijnlasers zitten op 0,3 mm/m.</div>
+    </div>
+    <div class="q-options">
+      <div class="q-options-label">Antwoorden</div>
+      <div class="option-row">
+        <div class="option-bullet"></div>
+        <div class="option-text"><strong>Standaard kluswerk</strong><span>bv. ophangen van foto's, schappen, klusjes thuis</span></div>
+      </div>
+      <div class="option-row">
+        <div class="option-bullet"></div>
+        <div class="option-text"><strong>Precies afwerken</strong><span>bv. tegelen, gipswanden plaatsen, profielen uitlijnen</span></div>
+      </div>
+      <div class="option-row">
+        <div class="option-bullet"></div>
+        <div class="option-text"><strong>Maximale precisie</strong><span>bv. veeleisend professioneel werk met strenge toleranties</span></div>
+      </div>
+    </div>
+    <div class="q-matching">
+      <div class="q-matching-label">Qonfi data matching — Nauwkeurigheid (mm/m)</div>
+      <div class="match-group">
+        <div class="match-option-name">Standaard kluswerk</div>
+        <div class="match-rule"><span class="tag tag-hard">hard</span><span class="match-text">Nauwkeurigheid &lt;= 0,5 mm/m</span></div>
+      </div>
+      <div class="match-group">
+        <div class="match-option-name">Precies afwerken</div>
+        <div class="match-rule"><span class="tag tag-hard">hard</span><span class="match-text">Nauwkeurigheid &lt;= 0,3 mm/m</span></div>
+      </div>
+      <div class="match-group">
+        <div class="match-option-name">Maximale precisie</div>
+        <div class="match-rule"><span class="tag tag-hard">hard</span><span class="match-text">Nauwkeurigheid &lt;= 0,2 mm/m</span></div>
+      </div>
+    </div>
+    <div class="data-table-wrap">
+      <div class="data-table-label">Datadekking nauwkeurigheid kruislijnlasers</div>
+      <table class="data-table">
+        <tr><th>Waarde</th><th>Modellen</th></tr>
+        <tr><td><code>0,2 mm/m</code></td><td>GLL 3-80 C, GLL 3-80 CG</td></tr>
+        <tr><td><code>0,3 mm/m</code></td><td>GCL 12V-50-22 CG, GCL 2-50 C/G, GLL 2-10, GLL 2-15 G, GLL 3-50, GLL 3-80, GLL 12V/18V/80-33, GLL 20-22 G</td></tr>
+        <tr><td><code>0,4 mm/m</code></td><td>AdvancedLevel 2G, UniversalLevel 360</td></tr>
+        <tr><td><code>0,5 mm/m</code></td><td>UniversalLevel 2, UniversalLevel 3</td></tr>
+        <tr><td><code>0,6 mm/m</code></td><td>Quigo Green</td></tr>
+        <tr><td><code>0,8 mm/m</code></td><td>Quigo rood</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- A5 -->
+  <div class="q-card">
+    <div class="q-header">
+      <span class="q-id qid-a">A5</span>
+      <div class="q-title">Welke voeding past het best bij jou?</div>
+      <div class="q-hint">Kies wat het best aansluit bij hoe jij werkt: eenvoudig, compact of op jouw bestaande accuplatform.</div>
+    </div>
+    <div class="q-options">
+      <div class="q-options-label">Antwoorden</div>
+      <div class="option-row">
+        <div class="option-bullet"></div>
+        <div class="option-text"><strong>Standaard batterijen (AA/AAA)</strong><span>Overal verkrijgbaar, geen lader nodig</span></div>
+      </div>
+      <div class="option-row">
+        <div class="option-bullet"></div>
+        <div class="option-text"><strong>Geïntegreerde oplaadbare accu</strong><span>Via USB-C, handig voor frequent gebruik</span></div>
+      </div>
+      <div class="option-row">
+        <div class="option-bullet"></div>
+        <div class="option-text"><strong>Platformaccu (12V / 18V / 40V)</strong><span>Voor wie al op een accuplatform werkt</span></div>
+      </div>
+    </div>
+    <div class="q-matching">
+      <div class="q-matching-label">Qonfi data matching — Voeding</div>
+      <div class="match-group">
+        <div class="match-option-name">Standaard batterijen</div>
+        <div class="match-rule"><span class="tag tag-hard">hard</span><span class="match-text">Voeding contains "AA"</span></div>
+      </div>
+      <div class="match-group">
+        <div class="match-option-name">Geïntegreerde oplaadbare accu</div>
+        <div class="match-rule"><span class="tag tag-hard">hard</span><span class="match-text">Voeding contains "Li-Ion (geintegreerd)"</span></div>
+      </div>
+      <div class="match-group">
+        <div class="match-option-name">Platformaccu</div>
+        <div class="match-rule"><span class="tag tag-hard">hard</span><span class="match-text">Voeding contains "12V Li-Ion" OR "18V Li-Ion" OR "40V Li-Ion"</span></div>
+      </div>
+    </div>
+    <div class="note-box">
+      <strong>Conditionele vervolgvraag</strong> <span class="conditional-badge">conditioneel</span> — alleen tonen bij keuze "Platformaccu":<br><br>
+      "Welk platform gebruik je al?"<br>
+      <div style="margin-top:8px;">
+        <div class="match-rule" style="margin-bottom:4px;"><span class="tag tag-hard">hard</span><span class="match-text">12V → Voeding contains "12V Li-Ion"</span></div>
+        <div class="match-rule" style="margin-bottom:4px;"><span class="tag tag-hard">hard</span><span class="match-text">18V → Voeding contains "18V Li-Ion"</span></div>
+        <div class="match-rule" style="margin-bottom:4px;"><span class="tag tag-hard">hard</span><span class="match-text">12V/18V → Voeding contains "12V Li-Ion" OR "18V Li-Ion"</span></div>
+        <div class="match-rule" style="margin-bottom:4px;"><span class="tag tag-hard">hard</span><span class="match-text">40V → Voeding contains "40V Li-Ion"</span></div>
+        <div class="match-rule"><span class="tag tag-none">geen filter</span><span class="match-text">Geen voorkeur → geen hard filter</span></div>
+      </div>
+    </div>
+  </div>
+  </div><!-- /flow-group A -->
+
+  <div class="flow-divider"></div>
+
+  <!-- ══════════════════════════════════════════════════════ -->
+  <!-- FLOW B: ROTATIELASER -->
+  <!-- ══════════════════════════════════════════════════════ -->
+  <div class="flow-group">
+  <div class="section-header sh-b">
+    <span class="sh-letter">B</span>
+    <div class="sh-info">
+      <h2>Flow B — Rotatielaser</h2>
+      <p>4 vragen · Grote werven, buitenwerk, uitzetten van terreinen</p>
+    </div>
+  </div>
+
+  <!-- B1 -->
+  <div class="q-card">
+    <div class="q-header">
+      <span class="q-id qid-b">B1</span>
+      <div class="q-title">Hoe ver moet je typisch werken?</div>
+      <div class="q-hint">Rotatielasers worden altijd gebruikt met een ontvanger. Het bereik met ontvanger bepaalt welk model je nodig hebt. Alle rotatielasers draaien 360° horizontaal.</div>
+    </div>
+    <div class="q-options">
+      <div class="q-options-label">Antwoorden</div>
+      <div class="option-row">
+        <div class="option-bullet"></div>
+        <div class="option-text"><strong>Tot 150 m (diameter)</strong><span>bv. binnenshuis of kleine tot middelgrote buitenwerf</span></div>
+      </div>
+      <div class="option-row">
+        <div class="option-bullet"></div>
+        <div class="option-text"><strong>150 tot 300 m (diameter)</strong><span>bv. middelgrote werf, ruwbouw of wegenis</span></div>
+      </div>
+      <div class="option-row">
+        <div class="option-bullet"></div>
+        <div class="option-text"><strong>Meer dan 300 m (diameter)</strong><span>bv. grote infrastructuurwerken of uitgestrekt terrein</span></div>
+      </div>
+    </div>
+    <div class="q-matching">
+      <div class="q-matching-label">Qonfi data matching — Max. bereik met ontvanger</div>
+      <div class="match-group">
+        <div class="match-option-name">Tot 150 m</div>
+        <div class="match-rule"><span class="tag tag-hard">hard</span><span class="match-text">Max. bereik met ontvanger >= 2x 150 m</span></div>
+      </div>
+      <div class="match-group">
+        <div class="match-option-name">150 tot 300 m</div>
+        <div class="match-rule"><span class="tag tag-hard">hard</span><span class="match-text">Max. bereik met ontvanger >= 2x 200 m</span></div>
+      </div>
+      <div class="match-group">
+        <div class="match-option-name">Meer dan 300 m</div>
+        <div class="match-rule"><span class="tag tag-hard">hard</span><span class="match-text">Max. bereik met ontvanger >= 2x 300 m</span></div>
+      </div>
+    </div>
+    <div class="data-table-wrap">
+      <div class="data-table-label">Datadekking bereik rotatielasers</div>
+      <table class="data-table">
+        <tr><th>Bereik (met ontvanger)</th><th>Modellen</th></tr>
+        <tr><td><code>2x 150 m</code></td><td>GRL 300 HV (rood), GRL 300 HVG (groen)</td></tr>
+        <tr><td><code>2x 200–225 m</code></td><td>GRL 400 H (rood), DeWalt DCE074 (rood)</td></tr>
+        <tr><td><code>2x 300–325 m</code></td><td>GRL 600 CHV (rood), GRL 650 CHVG (groen)</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- B2 -->
+  <div class="q-card">
+    <div class="q-header">
+      <span class="q-id qid-b">B2</span>
+      <div class="q-title">Welke kleur laserstraal heb je liever?</div>
+      <div class="q-hint">Groen geeft betere zichtbaarheid — ook bij daglicht buiten — maar kost meer. Rood is de klassieke keuze voor wie met een ontvanger werkt.</div>
+    </div>
+    <div class="q-options">
+      <div class="q-options-label">Antwoorden</div>
+      <div class="option-row">
+        <div class="option-bullet"></div>
+        <div class="option-text"><strong>Groen</strong><span>Betere zichtbaarheid, ook bij daglicht</span></div>
+      </div>
+      <div class="option-row">
+        <div class="option-bullet"></div>
+        <div class="option-text"><strong>Rood</strong><span>Klassieke keuze voor werf, goed zichtbaar met ontvanger</span></div>
+      </div>
+      <div class="option-row">
+        <div class="option-bullet"></div>
+        <div class="option-text"><strong>Geen voorkeur</strong></div>
+      </div>
+    </div>
+    <div class="q-matching">
+      <div class="q-matching-label">Qonfi data matching</div>
+      <div class="match-group">
+        <div class="match-option-name">Groen</div>
+        <div class="match-rule"><span class="tag tag-hard">hard</span><span class="match-text">Kleur (laserstralen) == "Groen"</span></div>
+      </div>
+      <div class="match-group">
+        <div class="match-option-name">Rood</div>
+        <div class="match-rule"><span class="tag tag-hard">hard</span><span class="match-text">Kleur (laserstralen) == "Rood"</span></div>
+      </div>
+      <div class="match-group">
+        <div class="match-option-name">Geen voorkeur</div>
+        <div class="match-rule"><span class="tag tag-none">geen filter</span><span class="match-text">Geen filter op kleur</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- B3 -->
+  <div class="q-card">
+    <div class="q-header">
+      <span class="q-id qid-b">B3</span>
+      <div class="q-title">Welke nauwkeurigheid verwacht je?</div>
+      <div class="q-hint">Alle rotatielasers zijn nauwkeuriger dan kruislijnlasers. Het onderscheid zit tussen standaard nivelleren, uitzetten en professioneel infrastructuurwerk.</div>
+    </div>
+    <div class="q-options">
+      <div class="q-options-label">Antwoorden</div>
+      <div class="option-row">
+        <div class="option-bullet"></div>
+        <div class="option-text"><strong>Standaard nivelleerwerk</strong><span>bv. peilen uitzetten op een bouwwerf (0,1 mm/m)</span></div>
+      </div>
+      <div class="option-row">
+        <div class="option-bullet"></div>
+        <div class="option-text"><strong>Nauwkeurig uitzetten</strong><span>bv. funderingen, rioleringspeilen (0,08–0,09 mm/m)</span></div>
+      </div>
+      <div class="option-row">
+        <div class="option-bullet"></div>
+        <div class="option-text"><strong>Hoogste precisie</strong><span>bv. infrastructuur of zware buitenwerken (0,05 mm/m)</span></div>
+      </div>
+    </div>
+    <div class="q-matching">
+      <div class="q-matching-label">Qonfi data matching — Nauwkeurigheid (mm/m)</div>
+      <div class="match-group">
+        <div class="match-option-name">Standaard nivelleerwerk</div>
+        <div class="match-rule"><span class="tag tag-hard">hard</span><span class="match-text">Nauwkeurigheid &lt;= 0,1 mm/m</span></div>
+      </div>
+      <div class="match-group">
+        <div class="match-option-name">Nauwkeurig uitzetten</div>
+        <div class="match-rule"><span class="tag tag-hard">hard</span><span class="match-text">Nauwkeurigheid &lt;= 0,09 mm/m</span></div>
+      </div>
+      <div class="match-group">
+        <div class="match-option-name">Hoogste precisie</div>
+        <div class="match-rule"><span class="tag tag-hard">hard</span><span class="match-text">Nauwkeurigheid &lt;= 0,05 mm/m</span></div>
+      </div>
+    </div>
+    <div class="data-table-wrap">
+      <div class="data-table-label">Datadekking nauwkeurigheid rotatielasers</div>
+      <table class="data-table">
+        <tr><th>Waarde</th><th>Modellen</th></tr>
+        <tr><td><code>0,05 mm/m</code></td><td>GRL 600 CHV, GRL 650 CHVG</td></tr>
+        <tr><td><code>0,08 mm/m</code></td><td>GRL 400 H</td></tr>
+        <tr><td><code>0,09 mm/m</code></td><td>DeWalt DCE074</td></tr>
+        <tr><td><code>0,1 mm/m</code></td><td>GRL 300 HV, GRL 300 HVG</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- B4 -->
+  <div class="q-card">
+    <div class="q-header">
+      <span class="q-id qid-b">B4</span>
+      <div class="q-title">Welke voeding past het best bij jou?</div>
+      <div class="q-hint">Rotatielasers werken op D-batterijen (standaard) of 18V platformaccu's (voor wie al in dat platform zit).</div>
+    </div>
+    <div class="q-options">
+      <div class="q-options-label">Antwoorden</div>
+      <div class="option-row">
+        <div class="option-bullet"></div>
+        <div class="option-text"><strong>D-batterijen (LR2)</strong><span>Standaard voor rotatielasers, overal verkrijgbaar</span></div>
+      </div>
+      <div class="option-row">
+        <div class="option-bullet"></div>
+        <div class="option-text"><strong>18V platformaccu</strong><span>Voor wie al op het 18V Bosch of DeWalt platform werkt</span></div>
+      </div>
+    </div>
+    <div class="q-matching">
+      <div class="q-matching-label">Qonfi data matching — Voeding</div>
+      <div class="match-group">
+        <div class="match-option-name">D-batterijen</div>
+        <div class="match-rule"><span class="tag tag-hard">hard</span><span class="match-text">Voeding contains "D"</span></div>
+      </div>
+      <div class="match-group">
+        <div class="match-option-name">18V platformaccu</div>
+        <div class="match-rule"><span class="tag tag-hard">hard</span><span class="match-text">Voeding contains "18V Li-Ion"</span></div>
+      </div>
+    </div>
+    <div class="note-box">
+      Sommige modellen (GRL 600 CHV, GRL 650 CHVG) ondersteunen beide voedingsopties — die verschijnen bij beide keuzes.
+    </div>
+  </div>
+  </div><!-- /flow-group B -->
+
+  <div class="flow-divider"></div>
+
+  <!-- ══════════════════════════════════════════════════════ -->
+  <!-- FLOW C: PUNTLASER -->
+  <!-- ══════════════════════════════════════════════════════ -->
+  <div class="flow-group">
+  <div class="section-header sh-c">
+    <span class="sh-letter">C</span>
+    <div class="sh-info">
+      <h2>Flow C — Puntlaser</h2>
+      <p>2 vragen · Loodpuntoverdracht van vloer naar plafond</p>
+    </div>
+  </div>
+
+  <div class="note-box" style="margin:0 0 12px; border-radius:8px;">
+    <strong>Assortimentsnota:</strong> het assortiment pure puntlasers bestaat uit 2 modellen (<strong>GPL 3 G</strong> en <strong>GPL 5 G</strong>). Beide zijn groen, IP65, max 30m bereik en 2×AA voeding. Het enige echte onderscheid is het aantal loodpunten.
+  </div>
+
+  <!-- C1 -->
+  <div class="q-card">
+    <div class="q-header">
+      <span class="q-id qid-c">C1</span>
+      <div class="q-title">Hoeveel loodpunten heb je nodig?</div>
+      <div class="q-hint">Een puntlaser projecteert vaste punten van vloer naar plafond (en zijwaarts). Hoe meer punten, hoe meer referentiepunten je tegelijk hebt voor complexere installaties.</div>
+    </div>
+    <div class="q-options">
+      <div class="q-options-label">Antwoorden</div>
+      <div class="option-row">
+        <div class="option-bullet"></div>
+        <div class="option-text"><strong>3 punten</strong><span>Standaard overdracht — onder, voor en boven</span></div>
+      </div>
+      <div class="option-row">
+        <div class="option-bullet"></div>
+        <div class="option-text"><strong>5 punten</strong><span>Complexere installaties met meerdere referentiepunten tegelijk</span></div>
+      </div>
+    </div>
+    <div class="q-matching">
+      <div class="q-matching-label">Qonfi data matching — Aantal loodpunten</div>
+      <div class="match-group">
+        <div class="match-option-name">3 punten</div>
+        <div class="match-rule"><span class="tag tag-hard">hard</span><span class="match-text">Aantal loodpunten == 3</span></div>
+      </div>
+      <div class="match-group">
+        <div class="match-option-name">5 punten</div>
+        <div class="match-rule"><span class="tag tag-hard">hard</span><span class="match-text">Aantal loodpunten == 5</span></div>
+      </div>
+    </div>
+    <div class="data-table-wrap">
+      <div class="data-table-label">Datadekking puntlasers</div>
+      <table class="data-table">
+        <tr><th>Model</th><th>Kleur</th><th>IP</th><th>Bereik</th><th>Loodpunten</th><th>Voeding</th><th>Nauwkeurigheid</th></tr>
+        <tr><td>GPL 3 G</td><td>Groen</td><td>IP65</td><td>30 m</td><td>3</td><td>2× AA</td><td>0,35 mm/m</td></tr>
+        <tr><td>GPL 5 G</td><td>Groen</td><td>IP65</td><td>30 m</td><td>5</td><td>2× AA</td><td>0,35 mm/m</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- C2 -->
+  <div class="q-card">
+    <div class="q-header">
+      <span class="q-id qid-c">C2</span>
+      <div class="q-title">Welke voeding past het best bij jou?</div>
+      <div class="q-hint">Beide puntlasers werken op AA-batterijen. Als je ook combis wil zien (kruislijnlaser + puntlaser in één), dan zijn er extra opties met platformaccu.</div>
+    </div>
+    <div class="q-options">
+      <div class="q-options-label">Antwoorden</div>
+      <div class="option-row">
+        <div class="option-bullet"></div>
+        <div class="option-text"><strong>AA-batterijen</strong><span>Beide GPL-modellen, eenvoudig en compact</span></div>
+      </div>
+      <div class="option-row">
+        <div class="option-bullet"></div>
+        <div class="option-text"><strong>Platformaccu (12V / 18V)</strong><span>Combilaser met puntlaserfunctie — bv. GCL 12V-50-22 CG of DeWalt DCLE14251GB</span></div>
+      </div>
+    </div>
+    <div class="q-matching">
+      <div class="q-matching-label">Qonfi data matching</div>
+      <div class="match-group">
+        <div class="match-option-name">AA-batterijen (pure puntlasers)</div>
+        <div class="match-rule"><span class="tag tag-hard">hard</span><span class="match-text">Voeding contains "AA"</span></div>
+        <div class="match-rule"><span class="tag tag-hard">hard</span><span class="match-text">Type laser contains "Puntlaser"</span></div>
+      </div>
+      <div class="match-group">
+        <div class="match-option-name">Platformaccu (combilasers met puntfunctie)</div>
+        <div class="match-rule"><span class="tag tag-hard">hard</span><span class="match-text">Voeding contains "12V Li-Ion" OR "18V Li-Ion"</span></div>
+        <div class="match-rule"><span class="tag tag-hard">hard</span><span class="match-text">Type laser contains "Puntlaser"</span></div>
+      </div>
+    </div>
+    <div class="note-box">
+      <strong>Conditionele vervolgvraag</strong> <span class="conditional-badge">conditioneel</span> — alleen bij keuze "Platformaccu":<br><br>
+      <div class="match-rule" style="margin-bottom:4px;"><span class="tag tag-hard">hard</span><span class="match-text">12V → Voeding contains "12V Li-Ion"</span></div>
+      <div class="match-rule" style="margin-bottom:4px;"><span class="tag tag-hard">hard</span><span class="match-text">18V → Voeding contains "18V Li-Ion"</span></div>
+      <div class="match-rule"><span class="tag tag-none">geen filter</span><span class="match-text">Geen voorkeur → geen hard filter</span></div>
+    </div>
+  </div>
+  </div><!-- /flow-group C -->
+
+  <div class="flow-divider"></div>
+
+  <!-- ══════════════════════════════════════════════════════ -->
+  <!-- FLOW D: LIJNLASER -->
+  <!-- ══════════════════════════════════════════════════════ -->
+  <div class="flow-group">
+  <div class="section-header sh-d">
+    <span class="sh-letter">D</span>
+    <div class="sh-info">
+      <h2>Flow D — Lijnlaser</h2>
+      <p>3 vragen · Rechte referentielijnen binnenshuis</p>
+    </div>
+  </div>
+
+  <div class="note-box" style="margin:0 0 12px; border-radius:8px;">
+    <strong>Assortimentsnota:</strong> alle lijnlasers hebben geen IP-beschermingsklasse (waarde <code>—</code>) — ze zijn uitsluitend bedoeld voor binnenshuis. Een binnen/buiten-vraag heeft geen filterwaarde.
+  </div>
+
+  <!-- D1 -->
+  <div class="q-card">
+    <div class="q-header">
+      <span class="q-id qid-d">D1</span>
+      <div class="q-title">Waarvoor gebruik je de lijnlaser?</div>
+      <div class="q-hint">Lijnlasers zijn er in verschillende specialisaties. De juiste keuze hangt af van de klus.</div>
+    </div>
+    <div class="q-options">
+      <div class="q-options-label">Antwoorden</div>
+      <div class="option-row">
+        <div class="option-bullet"></div>
+        <div class="option-text"><strong>Tegels uitlijnen</strong><span>Nauwkeurige tegel-op-tegel plaatsing, inclusief 45°-hulplijn</span></div>
+      </div>
+      <div class="option-row">
+        <div class="option-bullet"></div>
+        <div class="option-text"><strong>Een horizontale lijn rondom de kamer</strong><span>bv. voor gordijnrails, stopcontacten of verlaagde plafonds</span></div>
+      </div>
+      <div class="option-row">
+        <div class="option-bullet"></div>
+        <div class="option-text"><strong>Algemeen uitlijnen</strong><span>bv. ophangen van objecten, eenvoudige rechte lijn op 1 vlak</span></div>
+      </div>
+    </div>
+    <div class="q-matching">
+      <div class="q-matching-label">Qonfi data matching — Projectie (laserstralen)</div>
+      <div class="match-group">
+        <div class="match-option-name">Tegels uitlijnen</div>
+        <div class="match-rule"><span class="tag tag-hard">hard</span><span class="match-text">Projectie (laserstralen) contains "3 lijnen horizontaal"</span></div>
+      </div>
+      <div class="match-group">
+        <div class="match-option-name">Horizontale lijn rondom de kamer</div>
+        <div class="match-rule"><span class="tag tag-hard">hard</span><span class="match-text">Projectie (laserstralen) contains "360° horizontaal"</span></div>
+      </div>
+      <div class="match-group">
+        <div class="match-option-name">Algemeen uitlijnen</div>
+        <div class="match-rule"><span class="tag tag-hard">hard</span><span class="match-text">Projectie (laserstralen) == "1 lijn"</span></div>
+      </div>
+    </div>
+    <div class="data-table-wrap">
+      <div class="data-table-label">Datadekking lijnlasers</div>
+      <table class="data-table">
+        <tr><th>Model</th><th>Kleur</th><th>Projectie</th><th>Bereik</th><th>Voeding</th><th>Nauwkeurigheid</th></tr>
+        <tr><td>GTL 3</td><td>Rood</td><td>3 lijnen horizontaal (+ 45°)</td><td>20 m</td><td>4× AA</td><td>0,2 mm/m</td></tr>
+        <tr><td>PLL 360-1</td><td>Rood</td><td>1× 360° horizontaal</td><td>24 m</td><td>2× AA</td><td>0,4 mm/m</td></tr>
+        <tr><td>PLL 360-1G</td><td>Groen</td><td>1× 360° horizontaal</td><td>30 m</td><td>Geïntegreerd</td><td>0,4 mm/m</td></tr>
+        <tr><td>Atino II</td><td>Rood</td><td>1 lijn</td><td>2,2 m</td><td>1× AA</td><td>0,3 mm/m</td></tr>
+        <tr><td>UniversalWallLevel</td><td>Rood</td><td>1 lijn + punt</td><td>20 m</td><td>2× AAA</td><td>0,5 mm/m</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- D2 -->
+  <div class="q-card">
+    <div class="q-header">
+      <span class="q-id qid-d">D2</span>
+      <div class="q-title">Welke kleur laserstraal heb je liever? <span class="conditional-badge">conditioneel</span></div>
+      <div class="q-hint">Alleen tonen bij keuze "Horizontale lijn rondom de kamer" in D1. Bij "Tegels" en "Algemeen" is er slechts één kleuroptie (rood) — deze vraag overslaan.</div>
+    </div>
+    <div class="q-options">
+      <div class="q-options-label">Antwoorden</div>
+      <div class="option-row">
+        <div class="option-bullet"></div>
+        <div class="option-text"><strong>Groen</strong><span>Beste zichtbaarheid binnenshuis, ook bij verlicht daglicht</span></div>
+      </div>
+      <div class="option-row">
+        <div class="option-bullet"></div>
+        <div class="option-text"><strong>Rood</strong><span>Klassieke keuze, goedkoper</span></div>
+      </div>
+      <div class="option-row">
+        <div class="option-bullet"></div>
+        <div class="option-text"><strong>Geen voorkeur</strong></div>
+      </div>
+    </div>
+    <div class="q-matching">
+      <div class="q-matching-label">Qonfi data matching</div>
+      <div class="match-group">
+        <div class="match-option-name">Groen</div>
+        <div class="match-rule"><span class="tag tag-hard">hard</span><span class="match-text">Kleur (laserstralen) == "Groen"</span></div>
+      </div>
+      <div class="match-group">
+        <div class="match-option-name">Rood</div>
+        <div class="match-rule"><span class="tag tag-hard">hard</span><span class="match-text">Kleur (laserstralen) == "Rood"</span></div>
+      </div>
+      <div class="match-group">
+        <div class="match-option-name">Geen voorkeur</div>
+        <div class="match-rule"><span class="tag tag-none">geen filter</span><span class="match-text">Geen filter op kleur</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- D3 -->
+  <div class="q-card">
+    <div class="q-header">
+      <span class="q-id qid-d">D3</span>
+      <div class="q-title">Welke voeding past het best bij jou?</div>
+      <div class="q-hint">De meeste lijnlasers werken op AA-batterijen. De PLL 360-1G heeft een geïntegreerde oplaadbare accu.</div>
+    </div>
+    <div class="q-options">
+      <div class="q-options-label">Antwoorden</div>
+      <div class="option-row">
+        <div class="option-bullet"></div>
+        <div class="option-text"><strong>AA-batterijen</strong><span>Standaard, overal verkrijgbaar</span></div>
+      </div>
+      <div class="option-row">
+        <div class="option-bullet"></div>
+        <div class="option-text"><strong>Geïntegreerde oplaadbare accu</strong><span>Handig als je de laser vaak gebruikt — opladen via USB-C (PLL 360-1G)</span></div>
+      </div>
+    </div>
+    <div class="q-matching">
+      <div class="q-matching-label">Qonfi data matching — Voeding</div>
+      <div class="match-group">
+        <div class="match-option-name">AA-batterijen</div>
+        <div class="match-rule"><span class="tag tag-hard">hard</span><span class="match-text">Voeding contains "AA"</span></div>
+      </div>
+      <div class="match-group">
+        <div class="match-option-name">Geïntegreerde oplaadbare accu</div>
+        <div class="match-rule"><span class="tag tag-hard">hard</span><span class="match-text">Voeding contains "Li-Ion (geintegreerd)"</span></div>
+      </div>
+    </div>
+  </div>
+  </div><!-- /flow-group D -->
+
+  <div class="flow-divider"></div>
+
+  <!-- ══════════════════════════════════════════════════════ -->
+  <!-- RESULTAATSTRATEGIE -->
+  <!-- ══════════════════════════════════════════════════════ -->
+  <div class="result-section">
+    <h2>Resultaatstrategie — gedeeld voor alle flows</h2>
+    <div class="result-cards">
+      <div class="result-card rc-best">
+        <div class="rc-label">1 · Beste match</div>
+        <p>Hoogste totaalscore op gekozen gebruik, bereik en precisie.</p>
+        <div class="rc-copy">"Dit is de laser die het best aansluit op jouw klus, werkomgeving en verwachtingen."</div>
+      </div>
+      <div class="result-card rc-strong">
+        <div class="rc-label">2 · Sterkere prestaties</div>
+        <p>Beter op bereik, robuustheid of precisie dan Beste match.</p>
+        <div class="rc-copy">"Meer bereik, meer precisie of meer robuustheid voor wie geen compromissen wil op de werf."</div>
+      </div>
+      <div class="result-card rc-value">
+        <div class="rc-label">3 · Beste prijs-kwaliteit</div>
+        <p>Sterke basisprestaties met lagere instap.</p>
+        <div class="rc-copy">"Een sterke keuze als je vlot en betrouwbaar wil werken zonder te zwaar te investeren."</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════ -->
+  <!-- TILE COPY -->
+  <!-- ══════════════════════════════════════════════════════ -->
+  <div class="tile-section">
+    <h2>Listing tile copy (NL) — Categoriepagina</h2>
+    <div class="tile-preview">
+      <div class="tp-type">Categorie tile</div>
+      <h3>Welke laser past bij jouw klus?</h3>
+      <p>Kies eerst je type laser en beantwoord een paar korte vragen. Zo vind je sneller de juiste tool voor jouw klus, zonder twijfel of tijdverlies.</p>
+      <button>Start keuzehulp</button>
+    </div>
+    <div class="uuid-row">
+      Tile ID: <code>guided-lasers-01</code> &nbsp;|&nbsp; Type: CATEGORIE &nbsp;|&nbsp; Positie: 0 &nbsp;|&nbsp; Active: Yes
+    </div>
+    <div class="uuid-row" style="margin-top:8px;">
+      Qonfi UUID NL: <span class="uuid-badge">TO_FILL_NL_UUID</span>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════ -->
+  <!-- GUIDE UUID TABEL -->
+  <!-- ══════════════════════════════════════════════════════ -->
+  <div class="impl-section">
+    <h2>Qonfi Guide UUID — invultabel</h2>
+    <table class="uuid-table">
+      <tr>
+        <th>Guide</th>
+        <th>Type laser</th>
+        <th>Aantal vragen</th>
+        <th>Qonfi UUID</th>
+      </tr>
+      <tr>
+        <td><strong>Flow A</strong></td>
+        <td>Kruislijnlaser</td>
+        <td>5 (+ 1 conditioneel)</td>
+        <td><input class="uuid-input" type="text" placeholder="TO_FILL" /></td>
+      </tr>
+      <tr>
+        <td><strong>Flow B</strong></td>
+        <td>Rotatielaser</td>
+        <td>4</td>
+        <td><input class="uuid-input" type="text" placeholder="TO_FILL" /></td>
+      </tr>
+      <tr>
+        <td><strong>Flow C</strong></td>
+        <td>Puntlaser</td>
+        <td>2 (+ 1 conditioneel)</td>
+        <td><input class="uuid-input" type="text" placeholder="TO_FILL" /></td>
+      </tr>
+      <tr>
+        <td><strong>Flow D</strong></td>
+        <td>Lijnlaser</td>
+        <td>3 (D2 conditioneel)</td>
+        <td><input class="uuid-input" type="text" placeholder="TO_FILL" /></td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════ -->
+  <!-- IMPLEMENTATIENOTITIES -->
+  <!-- ══════════════════════════════════════════════════════ -->
+  <div class="impl-section">
+    <h2>Qonfi implementatienotities</h2>
+    <ul>
+      <li>Elk lasertype krijgt een <strong>aparte Qonfi guide</strong> (Flow A t/m D). De routeringsvraag wordt ingericht als tile op de categoriepagina die doorlinkt naar de juiste guide.</li>
+      <li><strong>Gebruik altijd <code>contains</code></strong> op Type laser — niet exact gelijk. Sommige producten combineren meerdere types in 1 veld met <code>;</code> als scheidingsteken.</li>
+      <li><strong>IP-filter bij kruislijnlasers:</strong> consumentenmodellen (Quigo, UniversalLevel, PLL 360-1, AdvancedLevel 2G) hebben geen IP-waarde. Gebruik geen hard IP-filter voor de optie "Alleen binnen".</li>
+      <li><strong>Nauwkeurigheidsfilter kruislijnlasers:</strong> laagste beschikbare waarde is 0,2 mm/m — gebruik nooit 0,1 mm/m als grens want geen enkel model haalt dat.</li>
+      <li><strong>Rotatielasers:</strong> bereik is altijd genoteerd als <code>2x [n] m</code> (diameter). Nauwkeurigheidswaarden zijn 0,05 / 0,08 / 0,09 / 0,1 mm/m — gebruik de correcte grenzen.</li>
+      <li><strong>Flow C (Puntlaser)</strong> is bewust kort (2 vragen) — beide modellen zijn identiek op alle kenmerken behalve het aantal loodpunten.</li>
+      <li><strong>Flow D (Lijnlaser), vraag D2</strong> is conditioneel: toon alleen bij antwoord "Horizontale lijn rondom de kamer" op D1.</li>
+      <li>Behandel lege of onvolledige waarden als unknown: <strong>geen hard filter, wel lagere ranking</strong>.</li>
+      <li>Schrijf vraag- en resultaatcopy altijd vanuit klantvoordeel: sneller kiezen, zekerder werken, beter resultaat.</li>
+    </ul>
+  </div>
+
+</div><!-- /container -->
+</body>
+</html>
