@@ -767,6 +767,71 @@
       border: 1px solid #f3f4f6;
     }
 
+    /* ── FLOW OVERVIEW ── */
+    .flow-overview {
+      background: var(--white);
+      padding: 20px 24px;
+      border-bottom: 1px solid var(--border);
+    }
+    .flow-overview-label {
+      font-size: 10px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin-bottom: 14px;
+    }
+    .fov-steps {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: flex-start;
+    }
+    .fov-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 7px;
+      flex: 1;
+      min-width: 100px;
+      background: var(--bg);
+      border-radius: 10px;
+      padding: 12px 10px;
+      text-align: center;
+      border: 1px solid var(--border);
+    }
+    .fov-num {
+      display: inline-flex;
+      align-items: center;
+      font-size: 10px;
+      font-weight: 800;
+      border-radius: 6px;
+      padding: 3px 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+    }
+    .fov-step-title {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.3;
+    }
+    .fov-step-sub {
+      font-size: 10px;
+      color: var(--muted);
+      line-height: 1.35;
+    }
+    .fov-step.fov-cond {
+      opacity: 0.6;
+      border-style: dashed;
+    }
+    .fov-arrow {
+      font-size: 16px;
+      color: #d1d5db;
+      padding-top: 28px;
+      flex-shrink: 0;
+    }
+
     /* ── CONDITIONAL BADGE ── */
     .conditional-badge {
       display: inline-flex;
@@ -952,7 +1017,42 @@
     <span class="sh-letter">A</span>
     <div class="sh-info">
       <h2>Flow A — Kruislijnlaser</h2>
-      <p>4 vragen · Uitlijnen, tegelen, waterpas zetten, binnenwerk</p>
+      <p>5 vragen · Uitlijnen, tegelen, waterpas zetten, binnenwerk</p>
+    </div>
+  </div>
+
+  <div class="flow-overview">
+    <div class="flow-overview-label">Vragen in deze flow</div>
+    <div class="fov-steps">
+      <div class="fov-step">
+        <span class="fov-num qid-a">A1</span>
+        <div class="fov-step-title">Werkomgeving</div>
+        <div class="fov-step-sub">Binnen / buiten / professioneel</div>
+      </div>
+      <div class="fov-arrow">→</div>
+      <div class="fov-step">
+        <span class="fov-num qid-a">A2</span>
+        <div class="fov-step-title">Kleur laser</div>
+        <div class="fov-step-sub">Groen / rood / geen voorkeur</div>
+      </div>
+      <div class="fov-arrow">→</div>
+      <div class="fov-step">
+        <span class="fov-num qid-a">A3</span>
+        <div class="fov-step-title">Projectievlakken</div>
+        <div class="fov-step-sub">1 vlak / meerdere / 360°</div>
+      </div>
+      <div class="fov-arrow">→</div>
+      <div class="fov-step">
+        <span class="fov-num qid-a">A4</span>
+        <div class="fov-step-title">Nauwkeurigheid</div>
+        <div class="fov-step-sub">Standaard / precies / max.</div>
+      </div>
+      <div class="fov-arrow">→</div>
+      <div class="fov-step">
+        <span class="fov-num qid-a">A5</span>
+        <div class="fov-step-title">Merkvoorkeur</div>
+        <div class="fov-step-sub">BOSCH / FUTECH / FLUKE / …</div>
+      </div>
     </div>
   </div>
 
@@ -1154,6 +1254,76 @@
       </table>
     </div>
   </div>
+  <!-- A5 -->
+  <div class="q-card">
+    <div class="q-header">
+      <span class="q-id qid-a">A5</span>
+      <div class="q-title">Heb je een merkvoorkeur?</div>
+      <div class="q-hint">Elk merk heeft zijn eigen sterktes. Geen voorkeur? Dan tonen we alle opties — Qonfi sorteert op beste match van de vorige antwoorden.</div>
+    </div>
+    <div class="q-options">
+      <div class="q-options-label">Antwoorden</div>
+      <div class="option-row">
+        <div class="option-bullet"></div>
+        <div class="option-text"><strong>BOSCH</strong><span>Brede range van doe-het-zelver tot professioneel, sterk service-netwerk</span></div>
+      </div>
+      <div class="option-row">
+        <div class="option-bullet"></div>
+        <div class="option-text"><strong>FUTECH</strong><span>Gespecialiseerd in professionele meetlasers, sterke prijs-kwaliteit</span></div>
+      </div>
+      <div class="option-row">
+        <div class="option-bullet"></div>
+        <div class="option-text"><strong>FLUKE</strong><span>Premium meetapparatuur, hoge betrouwbaarheid voor vakmensen</span></div>
+      </div>
+      <div class="option-row">
+        <div class="option-bullet"></div>
+        <div class="option-text"><strong>RYOBI</strong><span>Betaalbaar instapmodel voor doe-het-zelvers</span></div>
+      </div>
+      <div class="option-row">
+        <div class="option-bullet"></div>
+        <div class="option-text"><strong>XHANDER</strong><span>Compacte professionele modellen, goede prijs-kwaliteit</span></div>
+      </div>
+      <div class="option-row">
+        <div class="option-bullet"></div>
+        <div class="option-text"><strong>SPIT</strong><span>Vakmansgericht, betrouwbaar voor bouw &amp; installatie</span></div>
+      </div>
+      <div class="option-row">
+        <div class="option-bullet"></div>
+        <div class="option-text"><strong>Geen voorkeur</strong><span>Toon alle merken — beste match bepaalt de aanbeveling</span></div>
+      </div>
+    </div>
+    <div class="q-matching">
+      <div class="q-matching-label">Qonfi data matching — Merk</div>
+      <div class="match-group">
+        <div class="match-option-name">BOSCH</div>
+        <div class="match-rule"><span class="tag tag-hard">hard</span><span class="match-text">Merk == "BOSCH"</span></div>
+      </div>
+      <div class="match-group">
+        <div class="match-option-name">FUTECH</div>
+        <div class="match-rule"><span class="tag tag-hard">hard</span><span class="match-text">Merk == "FUTECH"</span></div>
+      </div>
+      <div class="match-group">
+        <div class="match-option-name">FLUKE</div>
+        <div class="match-rule"><span class="tag tag-hard">hard</span><span class="match-text">Merk == "FLUKE"</span></div>
+      </div>
+      <div class="match-group">
+        <div class="match-option-name">RYOBI</div>
+        <div class="match-rule"><span class="tag tag-hard">hard</span><span class="match-text">Merk == "RYOBI"</span></div>
+      </div>
+      <div class="match-group">
+        <div class="match-option-name">XHANDER</div>
+        <div class="match-rule"><span class="tag tag-hard">hard</span><span class="match-text">Merk == "XHANDER"</span></div>
+      </div>
+      <div class="match-group">
+        <div class="match-option-name">SPIT</div>
+        <div class="match-rule"><span class="tag tag-hard">hard</span><span class="match-text">Merk == "SPIT"</span></div>
+      </div>
+      <div class="match-group">
+        <div class="match-option-name">Geen voorkeur</div>
+        <div class="match-rule"><span class="tag tag-none">geen filter</span><span class="match-text">Geen filter op Merk</span></div>
+      </div>
+    </div>
+  </div>
   </div><!-- /flow-group A -->
 
   <div class="flow-divider"></div>
@@ -1166,7 +1336,42 @@
     <span class="sh-letter">B</span>
     <div class="sh-info">
       <h2>Flow B — Rotatielaser</h2>
-      <p>4 vragen · Grote werven, buitenwerk, uitzetten van terreinen</p>
+      <p>5 vragen · Grote werven, buitenwerk, uitzetten van terreinen</p>
+    </div>
+  </div>
+
+  <div class="flow-overview">
+    <div class="flow-overview-label">Vragen in deze flow</div>
+    <div class="fov-steps">
+      <div class="fov-step">
+        <span class="fov-num qid-b">B1</span>
+        <div class="fov-step-title">Werkbereik</div>
+        <div class="fov-step-sub">Tot 150 / 300 / 300+ m</div>
+      </div>
+      <div class="fov-arrow">→</div>
+      <div class="fov-step">
+        <span class="fov-num qid-b">B2</span>
+        <div class="fov-step-title">Kleur laser</div>
+        <div class="fov-step-sub">Groen / rood / geen voorkeur</div>
+      </div>
+      <div class="fov-arrow">→</div>
+      <div class="fov-step">
+        <span class="fov-num qid-b">B3</span>
+        <div class="fov-step-title">Nauwkeurigheid</div>
+        <div class="fov-step-sub">Standaard / nauwkeurig / hoogste</div>
+      </div>
+      <div class="fov-arrow">→</div>
+      <div class="fov-step">
+        <span class="fov-num qid-b">B4</span>
+        <div class="fov-step-title">Verticaal werk</div>
+        <div class="fov-step-sub">Ja / nee / geen voorkeur</div>
+      </div>
+      <div class="fov-arrow">→</div>
+      <div class="fov-step">
+        <span class="fov-num qid-b">B5</span>
+        <div class="fov-step-title">Merkvoorkeur</div>
+        <div class="fov-step-sub">BOSCH / FUTECH / TOPCON / XHANDER</div>
+      </div>
     </div>
   </div>
 
@@ -1355,6 +1560,60 @@
       </table>
     </div>
   </div>
+  <!-- B5 -->
+  <div class="q-card">
+    <div class="q-header">
+      <span class="q-id qid-b">B5</span>
+      <div class="q-title">Heb je een merkvoorkeur?</div>
+      <div class="q-hint">Elk merk heeft zijn eigen sterktes. Geen voorkeur? Dan tonen we alle opties — Qonfi sorteert op beste match van de vorige antwoorden.</div>
+    </div>
+    <div class="q-options">
+      <div class="q-options-label">Antwoorden</div>
+      <div class="option-row">
+        <div class="option-bullet"></div>
+        <div class="option-text"><strong>BOSCH</strong><span>Brede range, sterk service-netwerk, GRL 300 en 400 H</span></div>
+      </div>
+      <div class="option-row">
+        <div class="option-bullet"></div>
+        <div class="option-text"><strong>FUTECH</strong><span>SPINNER, Para-serie — beste bereik en nauwkeurigheid in het assortiment</span></div>
+      </div>
+      <div class="option-row">
+        <div class="option-bullet"></div>
+        <div class="option-text"><strong>TOPCON</strong><span>Premium meetapparatuur, uiterst nauwkeurig (0,05 mm/m)</span></div>
+      </div>
+      <div class="option-row">
+        <div class="option-bullet"></div>
+        <div class="option-text"><strong>XHANDER</strong><span>Compacte instap-rotatielaser, IP66</span></div>
+      </div>
+      <div class="option-row">
+        <div class="option-bullet"></div>
+        <div class="option-text"><strong>Geen voorkeur</strong><span>Toon alle merken — beste match bepaalt de aanbeveling</span></div>
+      </div>
+    </div>
+    <div class="q-matching">
+      <div class="q-matching-label">Qonfi data matching — Merk</div>
+      <div class="match-group">
+        <div class="match-option-name">BOSCH</div>
+        <div class="match-rule"><span class="tag tag-hard">hard</span><span class="match-text">Merk == "BOSCH"</span></div>
+      </div>
+      <div class="match-group">
+        <div class="match-option-name">FUTECH</div>
+        <div class="match-rule"><span class="tag tag-hard">hard</span><span class="match-text">Merk == "FUTECH"</span></div>
+      </div>
+      <div class="match-group">
+        <div class="match-option-name">TOPCON</div>
+        <div class="match-rule"><span class="tag tag-hard">hard</span><span class="match-text">Merk == "TOPCON"</span></div>
+      </div>
+      <div class="match-group">
+        <div class="match-option-name">XHANDER</div>
+        <div class="match-rule"><span class="tag tag-hard">hard</span><span class="match-text">Merk == "XHANDER"</span></div>
+      </div>
+      <div class="match-group">
+        <div class="match-option-name">Geen voorkeur</div>
+        <div class="match-rule"><span class="tag tag-none">geen filter</span><span class="match-text">Geen filter op Merk</span></div>
+      </div>
+    </div>
+  </div>
   </div><!-- /flow-group B -->
 
   <div class="flow-divider"></div>
@@ -1367,7 +1626,24 @@
     <span class="sh-letter">C</span>
     <div class="sh-info">
       <h2>Flow C — Puntlaser</h2>
-      <p>1 vraag · Puntprojectie van vloer naar plafond</p>
+      <p>2 vragen · Puntprojectie van vloer naar plafond</p>
+    </div>
+  </div>
+
+  <div class="flow-overview">
+    <div class="flow-overview-label">Vragen in deze flow</div>
+    <div class="fov-steps">
+      <div class="fov-step">
+        <span class="fov-num qid-c">C1</span>
+        <div class="fov-step-title">Aantal punten</div>
+        <div class="fov-step-sub">3 / 5 geprojecteerde punten</div>
+      </div>
+      <div class="fov-arrow">→</div>
+      <div class="fov-step">
+        <span class="fov-num qid-c">C2</span>
+        <div class="fov-step-title">Merkvoorkeur</div>
+        <div class="fov-step-sub">BOSCH (enig merk)</div>
+      </div>
     </div>
   </div>
 
@@ -1417,6 +1693,36 @@
       </table>
     </div>
   </div>
+  <!-- C2 -->
+  <div class="q-card">
+    <div class="q-header">
+      <span class="q-id qid-c">C2</span>
+      <div class="q-title">Heb je een merkvoorkeur?</div>
+      <div class="q-hint">Het huidige assortiment puntlasers bestaat volledig uit BOSCH-modellen (GPL 3 G en GPL 5 G). Deze vraag is voorzien voor toekomstige assortimentsuitbreiding.</div>
+    </div>
+    <div class="q-options">
+      <div class="q-options-label">Antwoorden</div>
+      <div class="option-row">
+        <div class="option-bullet"></div>
+        <div class="option-text"><strong>BOSCH</strong><span>Enig beschikbaar merk in dit assortiment</span></div>
+      </div>
+      <div class="option-row">
+        <div class="option-bullet"></div>
+        <div class="option-text"><strong>Geen voorkeur</strong><span>Toon alle opties</span></div>
+      </div>
+    </div>
+    <div class="q-matching">
+      <div class="q-matching-label">Qonfi data matching — Merk</div>
+      <div class="match-group">
+        <div class="match-option-name">BOSCH</div>
+        <div class="match-rule"><span class="tag tag-hard">hard</span><span class="match-text">Merk == "BOSCH"</span></div>
+      </div>
+      <div class="match-group">
+        <div class="match-option-name">Geen voorkeur</div>
+        <div class="match-rule"><span class="tag tag-none">geen filter</span><span class="match-text">Geen filter op Merk</span></div>
+      </div>
+    </div>
+  </div>
   </div><!-- /flow-group C -->
 
   <div class="flow-divider"></div>
@@ -1429,7 +1735,30 @@
     <span class="sh-letter">D</span>
     <div class="sh-info">
       <h2>Flow D — Lijnlaser</h2>
-      <p>2 vragen · Rechte referentielijnen binnenshuis</p>
+      <p>3 vragen · Rechte referentielijnen binnenshuis · D2 conditioneel</p>
+    </div>
+  </div>
+
+  <div class="flow-overview">
+    <div class="flow-overview-label">Vragen in deze flow</div>
+    <div class="fov-steps">
+      <div class="fov-step">
+        <span class="fov-num qid-d">D1</span>
+        <div class="fov-step-title">Toepassing</div>
+        <div class="fov-step-sub">Tegels / 360° kamer / algemeen</div>
+      </div>
+      <div class="fov-arrow">→</div>
+      <div class="fov-step fov-cond">
+        <span class="fov-num qid-d">D2</span>
+        <div class="fov-step-title">Kleur laser</div>
+        <div class="fov-step-sub">Groen / rood · conditioneel</div>
+      </div>
+      <div class="fov-arrow">→</div>
+      <div class="fov-step">
+        <span class="fov-num qid-d">D3</span>
+        <div class="fov-step-title">Merkvoorkeur</div>
+        <div class="fov-step-sub">BOSCH (enig merk)</div>
+      </div>
     </div>
   </div>
 
@@ -1526,6 +1855,36 @@
       </div>
     </div>
   </div>
+  <!-- D3 -->
+  <div class="q-card">
+    <div class="q-header">
+      <span class="q-id qid-d">D3</span>
+      <div class="q-title">Heb je een merkvoorkeur?</div>
+      <div class="q-hint">Het huidige assortiment lijnlasers bestaat volledig uit BOSCH-modellen. Deze vraag is voorzien voor toekomstige assortimentsuitbreiding.</div>
+    </div>
+    <div class="q-options">
+      <div class="q-options-label">Antwoorden</div>
+      <div class="option-row">
+        <div class="option-bullet"></div>
+        <div class="option-text"><strong>BOSCH</strong><span>Enig beschikbaar merk in dit assortiment</span></div>
+      </div>
+      <div class="option-row">
+        <div class="option-bullet"></div>
+        <div class="option-text"><strong>Geen voorkeur</strong><span>Toon alle opties</span></div>
+      </div>
+    </div>
+    <div class="q-matching">
+      <div class="q-matching-label">Qonfi data matching — Merk</div>
+      <div class="match-group">
+        <div class="match-option-name">BOSCH</div>
+        <div class="match-rule"><span class="tag tag-hard">hard</span><span class="match-text">Merk == "BOSCH"</span></div>
+      </div>
+      <div class="match-group">
+        <div class="match-option-name">Geen voorkeur</div>
+        <div class="match-rule"><span class="tag tag-none">geen filter</span><span class="match-text">Geen filter op Merk</span></div>
+      </div>
+    </div>
+  </div>
   </div><!-- /flow-group D -->
 
   <div class="flow-divider"></div>
@@ -1588,25 +1947,25 @@
       <tr>
         <td><strong>Flow A</strong></td>
         <td>Kruislijnlaser</td>
-        <td>4</td>
+        <td>5</td>
         <td><input class="uuid-input" type="text" placeholder="TO_FILL" /></td>
       </tr>
       <tr>
         <td><strong>Flow B</strong></td>
         <td>Rotatielaser</td>
-        <td>4</td>
+        <td>5</td>
         <td><input class="uuid-input" type="text" placeholder="TO_FILL" /></td>
       </tr>
       <tr>
         <td><strong>Flow C</strong></td>
         <td>Puntlaser</td>
-        <td>1</td>
+        <td>2</td>
         <td><input class="uuid-input" type="text" placeholder="TO_FILL" /></td>
       </tr>
       <tr>
         <td><strong>Flow D</strong></td>
         <td>Lijnlaser</td>
-        <td>2 (D2 conditioneel)</td>
+        <td>3 (D2 conditioneel)</td>
         <td><input class="uuid-input" type="text" placeholder="TO_FILL" /></td>
       </tr>
     </table>
