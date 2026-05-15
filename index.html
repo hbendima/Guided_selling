@@ -356,14 +356,11 @@
     }
     .option-row:last-child { margin-bottom: 0; }
     .option-row:hover { border-color: #d1d5db; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
-    .option-bullet {
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      background: var(--bg);
+    .option-icon {
+      width: 32px;
+      height: 32px;
       flex-shrink: 0;
-      margin-top: 2px;
-      border: 2px solid #d1d5db;
+      margin-top: 1px;
     }
     .option-text { font-size: 13px; flex: 1; }
     .option-text strong { display: block; font-weight: 700; color: var(--text); }
@@ -854,6 +851,189 @@
 </head>
 <body>
 
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+  <defs>
+    <symbol id="icon-cross-laser" viewBox="0 0 32 32" fill="none">
+      <circle cx="16" cy="16" r="13" fill="#eff6ff"/>
+      <line x1="16" y1="3" x2="16" y2="29" stroke="#3b82f6" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="3" y1="16" x2="29" y2="16" stroke="#3b82f6" stroke-width="2.5" stroke-linecap="round"/>
+      <circle cx="16" cy="16" r="3.5" fill="#bfdbfe" stroke="#3b82f6" stroke-width="1.5"/>
+    </symbol>
+    <symbol id="icon-rotatie-laser" viewBox="0 0 32 32" fill="none">
+      <circle cx="16" cy="14" r="10" stroke="#7c3aed" stroke-width="1.8" stroke-dasharray="3 2"/>
+      <path d="M6 14A10 10 0 0 1 26 14" stroke="#7c3aed" stroke-width="2" stroke-linecap="round"/>
+      <path d="M23 11l3 3-3.5 1" stroke="#7c3aed" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="16" cy="14" r="3" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.5"/>
+      <line x1="13" y1="24" x2="11" y2="30" stroke="#7c3aed" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+      <line x1="16" y1="24" x2="16" y2="30" stroke="#7c3aed" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+      <line x1="19" y1="24" x2="21" y2="30" stroke="#7c3aed" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+    </symbol>
+    <symbol id="icon-punt-laser" viewBox="0 0 32 32" fill="none">
+      <line x1="16" y1="2" x2="16" y2="30" stroke="#d1fae5" stroke-width="1.5" stroke-dasharray="2 2"/>
+      <circle cx="16" cy="6" r="3" fill="#059669"/>
+      <circle cx="16" cy="16" r="3" fill="#059669"/>
+      <circle cx="16" cy="26" r="3" fill="#059669"/>
+    </symbol>
+    <symbol id="icon-lijn-laser" viewBox="0 0 32 32" fill="none">
+      <rect x="3" y="6" width="26" height="20" rx="2" fill="#fffbeb" stroke="#e5e7eb" stroke-width="1"/>
+      <line x1="3" y1="16" x2="29" y2="16" stroke="#d97706" stroke-width="3" stroke-linecap="round"/>
+      <circle cx="8" cy="16" r="3" fill="#fef3c7" stroke="#d97706" stroke-width="1.5"/>
+    </symbol>
+    <symbol id="icon-house" viewBox="0 0 32 32" fill="none">
+      <path d="M4 17L16 6l12 11" stroke="#6b7280" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M8 14.5V26h5v-5h6v5h5V14.5" stroke="#6b7280" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="icon-hardhat" viewBox="0 0 32 32" fill="none">
+      <path d="M9 20c0-4.4 3.6-8 7-8s7 3.6 7 8" stroke="#f59e0b" stroke-width="1.8" stroke-linecap="round"/>
+      <rect x="6" y="20" width="20" height="5" rx="1.5" stroke="#f59e0b" stroke-width="1.5" fill="#fef3c7"/>
+      <line x1="16" y1="7" x2="16" y2="12" stroke="#f59e0b" stroke-width="1.8" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="icon-outdoor" viewBox="0 0 32 32" fill="none">
+      <path d="M2 27L11 12l7 10 4-6 9 10" stroke="#6b7280" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="25" cy="8" r="3" stroke="#f59e0b" stroke-width="1.5" fill="#fef3c7"/>
+    </symbol>
+    <symbol id="icon-green-beam" viewBox="0 0 32 32" fill="none">
+      <circle cx="8" cy="16" r="4" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+      <circle cx="8" cy="16" r="1.5" fill="#16a34a"/>
+      <line x1="12" y1="16" x2="29" y2="16" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M20 13L29 16L20 19" stroke="#22c55e" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" opacity="0.5"/>
+    </symbol>
+    <symbol id="icon-red-beam" viewBox="0 0 32 32" fill="none">
+      <circle cx="8" cy="16" r="4" fill="#fee2e2" stroke="#dc2626" stroke-width="1.5"/>
+      <circle cx="8" cy="16" r="1.5" fill="#dc2626"/>
+      <line x1="12" y1="16" x2="29" y2="16" stroke="#ef4444" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M20 13L29 16L20 19" stroke="#ef4444" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" opacity="0.5"/>
+    </symbol>
+    <symbol id="icon-no-pref" viewBox="0 0 32 32" fill="none">
+      <circle cx="16" cy="16" r="11" stroke="#d1d5db" stroke-width="1.5" stroke-dasharray="3 2"/>
+      <circle cx="10" cy="16" r="1.5" fill="#d1d5db"/>
+      <circle cx="16" cy="16" r="1.5" fill="#d1d5db"/>
+      <circle cx="22" cy="16" r="1.5" fill="#d1d5db"/>
+    </symbol>
+    <symbol id="icon-1plane" viewBox="0 0 32 32" fill="none">
+      <rect x="5" y="5" width="22" height="22" rx="2" stroke="#d1d5db" stroke-width="1.2" fill="#eff6ff"/>
+      <line x1="5" y1="16" x2="27" y2="16" stroke="#3b82f6" stroke-width="2" stroke-linecap="round"/>
+      <line x1="16" y1="5" x2="16" y2="27" stroke="#3b82f6" stroke-width="2" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="icon-multiplane" viewBox="0 0 32 32" fill="none">
+      <path d="M3 18L16 24L29 18V9L16 3L3 9Z" stroke="#9ca3af" stroke-width="1.2" stroke-linejoin="round" fill="#f8fafc"/>
+      <path d="M3 9L16 15L29 9" stroke="#9ca3af" stroke-width="1.2"/>
+      <line x1="16" y1="15" x2="16" y2="24" stroke="#9ca3af" stroke-width="1.2"/>
+      <line x1="3" y1="13" x2="16" y2="7" stroke="#3b82f6" stroke-width="1.8" stroke-linecap="round"/>
+      <line x1="29" y1="13" x2="16" y2="7" stroke="#3b82f6" stroke-width="1.8" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="icon-360" viewBox="0 0 32 32" fill="none">
+      <circle cx="16" cy="16" r="12" stroke="#3b82f6" stroke-width="1.8"/>
+      <path d="M5 16Q16 8 27 16" stroke="#3b82f6" stroke-width="1.3" opacity="0.4"/>
+      <path d="M24 13L27 16L24 19" stroke="#3b82f6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="icon-target-low" viewBox="0 0 32 32" fill="none">
+      <circle cx="16" cy="16" r="12" stroke="#9ca3af" stroke-width="1.5"/>
+      <circle cx="16" cy="16" r="4" fill="#e5e7eb"/>
+    </symbol>
+    <symbol id="icon-target-mid" viewBox="0 0 32 32" fill="none">
+      <circle cx="16" cy="16" r="12" stroke="#f59e0b" stroke-width="1.5"/>
+      <circle cx="16" cy="16" r="7" stroke="#f59e0b" stroke-width="1.5"/>
+      <circle cx="16" cy="16" r="2.5" fill="#f59e0b"/>
+    </symbol>
+    <symbol id="icon-target-high" viewBox="0 0 32 32" fill="none">
+      <circle cx="16" cy="16" r="12" stroke="#ef4444" stroke-width="1.5"/>
+      <circle cx="16" cy="16" r="7" stroke="#ef4444" stroke-width="1.5"/>
+      <circle cx="16" cy="16" r="3" stroke="#ef4444" stroke-width="1.5"/>
+      <circle cx="16" cy="16" r="1.5" fill="#ef4444"/>
+      <line x1="16" y1="3" x2="16" y2="9" stroke="#ef4444" stroke-width="1.3" stroke-linecap="round"/>
+      <line x1="16" y1="23" x2="16" y2="29" stroke="#ef4444" stroke-width="1.3" stroke-linecap="round"/>
+      <line x1="3" y1="16" x2="9" y2="16" stroke="#ef4444" stroke-width="1.3" stroke-linecap="round"/>
+      <line x1="23" y1="16" x2="29" y2="16" stroke="#ef4444" stroke-width="1.3" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="icon-brand-bosch" viewBox="0 0 32 32">
+      <circle cx="16" cy="16" r="13" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.5"/>
+      <text x="16" y="20.5" text-anchor="middle" font-size="12" font-weight="800" fill="#1d4ed8" font-family="Inter,Arial,sans-serif">B</text>
+    </symbol>
+    <symbol id="icon-brand-futech" viewBox="0 0 32 32">
+      <circle cx="16" cy="16" r="13" fill="#ffedd5" stroke="#ea580c" stroke-width="1.5"/>
+      <text x="16" y="20.5" text-anchor="middle" font-size="12" font-weight="800" fill="#ea580c" font-family="Inter,Arial,sans-serif">F</text>
+    </symbol>
+    <symbol id="icon-brand-fluke" viewBox="0 0 32 32">
+      <circle cx="16" cy="16" r="13" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.5"/>
+      <text x="16" y="20.5" text-anchor="middle" font-size="10" font-weight="800" fill="#6d28d9" font-family="Inter,Arial,sans-serif">FL</text>
+    </symbol>
+    <symbol id="icon-brand-ryobi" viewBox="0 0 32 32">
+      <circle cx="16" cy="16" r="13" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+      <text x="16" y="20.5" text-anchor="middle" font-size="12" font-weight="800" fill="#15803d" font-family="Inter,Arial,sans-serif">R</text>
+    </symbol>
+    <symbol id="icon-brand-xhander" viewBox="0 0 32 32">
+      <circle cx="16" cy="16" r="13" fill="#cffafe" stroke="#0891b2" stroke-width="1.5"/>
+      <text x="16" y="20.5" text-anchor="middle" font-size="12" font-weight="800" fill="#0e7490" font-family="Inter,Arial,sans-serif">X</text>
+    </symbol>
+    <symbol id="icon-brand-spit" viewBox="0 0 32 32">
+      <circle cx="16" cy="16" r="13" fill="#fce7f3" stroke="#be185d" stroke-width="1.5"/>
+      <text x="16" y="20.5" text-anchor="middle" font-size="12" font-weight="800" fill="#9d174d" font-family="Inter,Arial,sans-serif">S</text>
+    </symbol>
+    <symbol id="icon-brand-topcon" viewBox="0 0 32 32">
+      <circle cx="16" cy="16" r="13" fill="#fef3c7" stroke="#d97706" stroke-width="1.5"/>
+      <text x="16" y="20.5" text-anchor="middle" font-size="12" font-weight="800" fill="#b45309" font-family="Inter,Arial,sans-serif">T</text>
+    </symbol>
+    <symbol id="icon-range-s" viewBox="0 0 32 32" fill="none">
+      <circle cx="6" cy="16" r="3" fill="#e5e7eb" stroke="#6b7280" stroke-width="1.5"/>
+      <line x1="9" y1="16" x2="19" y2="16" stroke="#6b7280" stroke-width="2" stroke-linecap="round" stroke-dasharray="2 1.5"/>
+      <path d="M17 13L21 16L17 19" stroke="#6b7280" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="icon-range-m" viewBox="0 0 32 32" fill="none">
+      <circle cx="4" cy="16" r="2.5" fill="#ddd6fe" stroke="#7c3aed" stroke-width="1.5"/>
+      <line x1="7" y1="16" x2="22" y2="16" stroke="#7c3aed" stroke-width="2" stroke-linecap="round" stroke-dasharray="2 1.5"/>
+      <path d="M20 13L24 16L20 19" stroke="#7c3aed" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M24 13L28 16L24 19" stroke="#7c3aed" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="icon-range-l" viewBox="0 0 32 32" fill="none">
+      <circle cx="3" cy="16" r="2" fill="#fee2e2" stroke="#dc2626" stroke-width="1.5"/>
+      <line x1="5" y1="16" x2="25" y2="16" stroke="#dc2626" stroke-width="2" stroke-linecap="round" stroke-dasharray="2 1.5"/>
+      <path d="M21 12L26 16L21 20" stroke="#dc2626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="icon-vert-yes" viewBox="0 0 32 32" fill="none">
+      <ellipse cx="16" cy="22" rx="11" ry="5" stroke="#3b82f6" stroke-width="1.8"/>
+      <ellipse cx="16" cy="16" rx="5" ry="11" stroke="#6366f1" stroke-width="1.5"/>
+      <circle cx="16" cy="16" r="2.5" fill="#bfdbfe" stroke="#3b82f6" stroke-width="1.2"/>
+    </symbol>
+    <symbol id="icon-horiz-only" viewBox="0 0 32 32" fill="none">
+      <ellipse cx="16" cy="20" rx="12" ry="5" stroke="#6b7280" stroke-width="1.8"/>
+      <circle cx="16" cy="14" r="3" fill="#e5e7eb" stroke="#9ca3af" stroke-width="1.2"/>
+      <line x1="16" y1="17" x2="16" y2="26" stroke="#9ca3af" stroke-width="1.5" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="icon-dots-3" viewBox="0 0 32 32" fill="none">
+      <line x1="16" y1="3" x2="16" y2="29" stroke="#e0e7ff" stroke-width="1.5" stroke-dasharray="2 2"/>
+      <circle cx="16" cy="7" r="3.5" fill="#6366f1"/>
+      <circle cx="16" cy="16" r="3.5" fill="#6366f1"/>
+      <circle cx="16" cy="25" r="3.5" fill="#6366f1"/>
+    </symbol>
+    <symbol id="icon-dots-5" viewBox="0 0 32 32" fill="none">
+      <line x1="16" y1="2" x2="16" y2="30" stroke="#e0e7ff" stroke-width="1.5" stroke-dasharray="2 2"/>
+      <circle cx="16" cy="4" r="2.5" fill="#6366f1"/>
+      <circle cx="16" cy="10" r="2.5" fill="#6366f1"/>
+      <circle cx="16" cy="16" r="2.5" fill="#6366f1"/>
+      <circle cx="16" cy="22" r="2.5" fill="#6366f1"/>
+      <circle cx="16" cy="28" r="2.5" fill="#6366f1"/>
+    </symbol>
+    <symbol id="icon-tile" viewBox="0 0 32 32" fill="none">
+      <rect x="3" y="3" width="12" height="12" rx="1" stroke="#6b7280" stroke-width="1.5"/>
+      <rect x="17" y="3" width="12" height="12" rx="1" stroke="#6b7280" stroke-width="1.5"/>
+      <rect x="3" y="17" width="12" height="12" rx="1" stroke="#6b7280" stroke-width="1.5"/>
+      <rect x="17" y="17" width="12" height="12" rx="1" stroke="#6b7280" stroke-width="1.5"/>
+      <line x1="3" y1="29" x2="29" y2="3" stroke="#3b82f6" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="2.5 2" opacity="0.8"/>
+    </symbol>
+    <symbol id="icon-ring-360" viewBox="0 0 32 32" fill="none">
+      <path d="M4 20V10L16 4L28 10V20" stroke="#d1d5db" stroke-width="1" stroke-linejoin="round" fill="#fffbeb"/>
+      <ellipse cx="16" cy="20" rx="12" ry="5" stroke="#d97706" stroke-width="2.5"/>
+      <path d="M25 17L28 20L25 23" stroke="#d97706" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="icon-line-1" viewBox="0 0 32 32" fill="none">
+      <rect x="3" y="5" width="26" height="22" rx="2" fill="#eff6ff" stroke="#d1d5db" stroke-width="1.2"/>
+      <line x1="3" y1="16" x2="29" y2="16" stroke="#3b82f6" stroke-width="2.5" stroke-linecap="round"/>
+      <circle cx="8" cy="16" r="2.5" fill="#bfdbfe" stroke="#3b82f6" stroke-width="1.2"/>
+    </symbol>
+  </defs>
+</svg>
+
 <div class="topbar">
   <span class="topbar-logo">KLIUM</span>
   <span class="topbar-sep">|</span>
@@ -932,7 +1112,7 @@
       <div class="q-options-label">Antwoorden</div>
 
       <div class="option-row">
-        <div class="option-bullet"></div>
+        <svg class="option-icon" aria-hidden="true"><use href="#icon-cross-laser"/></svg>
         <div class="option-text">
           <strong>Waterpas zetten, tegels of wanden uitlijnen</strong>
           <span>Binnenshuis uitlijnen, nivelleren, bevestigen</span>
@@ -941,7 +1121,7 @@
       </div>
 
       <div class="option-row">
-        <div class="option-bullet"></div>
+        <svg class="option-icon" aria-hidden="true"><use href="#icon-rotatie-laser"/></svg>
         <div class="option-text">
           <strong>Een grote ruimte of buitenterrein uitzetten</strong>
           <span>360° nivelleren op werf of open terrein</span>
@@ -950,7 +1130,7 @@
       </div>
 
       <div class="option-row">
-        <div class="option-bullet"></div>
+        <svg class="option-icon" aria-hidden="true"><use href="#icon-punt-laser"/></svg>
         <div class="option-text">
           <strong>Punten nauwkeurig overbrengen van vloer naar plafond</strong>
           <span>Loodpuntoverdracht voor installaties en elektriciteit</span>
@@ -959,7 +1139,7 @@
       </div>
 
       <div class="option-row">
-        <div class="option-bullet"></div>
+        <svg class="option-icon" aria-hidden="true"><use href="#icon-lijn-laser"/></svg>
         <div class="option-text">
           <strong>Één rechte lijn trekken over een lange afstand</strong>
           <span>Tegels, gordijnrails, stopcontacten uitlijnen</span>
@@ -968,7 +1148,7 @@
       </div>
 
       <div class="option-row">
-        <div class="option-bullet"></div>
+        <svg class="option-icon" aria-hidden="true"><use href="#icon-no-pref"/></svg>
         <div class="option-text">
           <strong>Weet ik nog niet</strong>
           <span>Toon typeoverzicht met uitleg → klant kiest daarna</span>
@@ -1066,15 +1246,15 @@
     <div class="q-options">
       <div class="q-options-label">Antwoorden</div>
       <div class="option-row">
-        <div class="option-bullet"></div>
+        <svg class="option-icon" aria-hidden="true"><use href="#icon-house"/></svg>
         <div class="option-text"><strong>Alleen binnen</strong><span>bv. een woning, appartement of winkelruimte (doe-het-zelver of lichte klus)</span></div>
       </div>
       <div class="option-row">
-        <div class="option-bullet"></div>
+        <svg class="option-icon" aria-hidden="true"><use href="#icon-hardhat"/></svg>
         <div class="option-text"><strong>Professioneel binnen of ook buiten</strong><span>bv. op een werf, in een nieuwbouw of van binnen naar buiten</span></div>
       </div>
       <div class="option-row">
-        <div class="option-bullet"></div>
+        <svg class="option-icon" aria-hidden="true"><use href="#icon-outdoor"/></svg>
         <div class="option-text"><strong>Vooral buiten</strong><span>bv. op een open terrein, bij ruwbouw of wegenis</span></div>
       </div>
     </div>
@@ -1118,15 +1298,15 @@
     <div class="q-options">
       <div class="q-options-label">Antwoorden</div>
       <div class="option-row">
-        <div class="option-bullet"></div>
+        <svg class="option-icon" aria-hidden="true"><use href="#icon-green-beam"/></svg>
         <div class="option-text"><strong>Groen</strong><span>Beste zichtbaarheid binnenshuis, ook bij veel licht</span></div>
       </div>
       <div class="option-row">
-        <div class="option-bullet"></div>
+        <svg class="option-icon" aria-hidden="true"><use href="#icon-red-beam"/></svg>
         <div class="option-text"><strong>Rood</strong><span>De klassieke keuze, goed zichtbaar en doorgaans goedkoper</span></div>
       </div>
       <div class="option-row">
-        <div class="option-bullet"></div>
+        <svg class="option-icon" aria-hidden="true"><use href="#icon-no-pref"/></svg>
         <div class="option-text"><strong>Geen voorkeur</strong><span>Toon me alle opties</span></div>
       </div>
     </div>
@@ -1157,19 +1337,19 @@
     <div class="q-options">
       <div class="q-options-label">Antwoorden</div>
       <div class="option-row">
-        <div class="option-bullet"></div>
+        <svg class="option-icon" aria-hidden="true"><use href="#icon-1plane"/></svg>
         <div class="option-text"><strong>Op 1 vlak</strong><span>Standaard kruislijn voor uitlijnen op 1 muur of richting</span></div>
       </div>
       <div class="option-row">
-        <div class="option-bullet"></div>
+        <svg class="option-icon" aria-hidden="true"><use href="#icon-multiplane"/></svg>
         <div class="option-text"><strong>Op meerdere vlakken tegelijk</strong><span>bv. hoeken, aansluitende wanden of plafond én muur</span></div>
       </div>
       <div class="option-row">
-        <div class="option-bullet"></div>
+        <svg class="option-icon" aria-hidden="true"><use href="#icon-360"/></svg>
         <div class="option-text"><strong>Volledige ruimtedekking (360°)</strong><span>Rondom zonder herpositioneren</span></div>
       </div>
       <div class="option-row">
-        <div class="option-bullet"></div>
+        <svg class="option-icon" aria-hidden="true"><use href="#icon-no-pref"/></svg>
         <div class="option-text"><strong>Geen voorkeur</strong><span>Toon me alle opties</span></div>
       </div>
     </div>
@@ -1212,15 +1392,15 @@
     <div class="q-options">
       <div class="q-options-label">Antwoorden</div>
       <div class="option-row">
-        <div class="option-bullet"></div>
+        <svg class="option-icon" aria-hidden="true"><use href="#icon-target-low"/></svg>
         <div class="option-text"><strong>Standaard kluswerk</strong><span>bv. ophangen van foto's, schappen, klusjes thuis</span></div>
       </div>
       <div class="option-row">
-        <div class="option-bullet"></div>
+        <svg class="option-icon" aria-hidden="true"><use href="#icon-target-mid"/></svg>
         <div class="option-text"><strong>Precies afwerken</strong><span>bv. tegelen, gipswanden plaatsen, profielen uitlijnen</span></div>
       </div>
       <div class="option-row">
-        <div class="option-bullet"></div>
+        <svg class="option-icon" aria-hidden="true"><use href="#icon-target-high"/></svg>
         <div class="option-text"><strong>Maximale precisie</strong><span>bv. veeleisend professioneel werk met strenge toleranties</span></div>
       </div>
     </div>
@@ -1264,31 +1444,31 @@
     <div class="q-options">
       <div class="q-options-label">Antwoorden</div>
       <div class="option-row">
-        <div class="option-bullet"></div>
+        <svg class="option-icon" aria-hidden="true"><use href="#icon-brand-bosch"/></svg>
         <div class="option-text"><strong>BOSCH</strong><span>Brede range van doe-het-zelver tot professioneel, sterk service-netwerk</span></div>
       </div>
       <div class="option-row">
-        <div class="option-bullet"></div>
+        <svg class="option-icon" aria-hidden="true"><use href="#icon-brand-futech"/></svg>
         <div class="option-text"><strong>FUTECH</strong><span>Gespecialiseerd in professionele meetlasers, sterke prijs-kwaliteit</span></div>
       </div>
       <div class="option-row">
-        <div class="option-bullet"></div>
+        <svg class="option-icon" aria-hidden="true"><use href="#icon-brand-fluke"/></svg>
         <div class="option-text"><strong>FLUKE</strong><span>Premium meetapparatuur, hoge betrouwbaarheid voor vakmensen</span></div>
       </div>
       <div class="option-row">
-        <div class="option-bullet"></div>
+        <svg class="option-icon" aria-hidden="true"><use href="#icon-brand-ryobi"/></svg>
         <div class="option-text"><strong>RYOBI</strong><span>Betaalbaar instapmodel voor doe-het-zelvers</span></div>
       </div>
       <div class="option-row">
-        <div class="option-bullet"></div>
+        <svg class="option-icon" aria-hidden="true"><use href="#icon-brand-xhander"/></svg>
         <div class="option-text"><strong>XHANDER</strong><span>Compacte professionele modellen, goede prijs-kwaliteit</span></div>
       </div>
       <div class="option-row">
-        <div class="option-bullet"></div>
+        <svg class="option-icon" aria-hidden="true"><use href="#icon-brand-spit"/></svg>
         <div class="option-text"><strong>SPIT</strong><span>Vakmansgericht, betrouwbaar voor bouw &amp; installatie</span></div>
       </div>
       <div class="option-row">
-        <div class="option-bullet"></div>
+        <svg class="option-icon" aria-hidden="true"><use href="#icon-no-pref"/></svg>
         <div class="option-text"><strong>Geen voorkeur</strong><span>Toon alle merken — beste match bepaalt de aanbeveling</span></div>
       </div>
     </div>
@@ -1385,15 +1565,15 @@
     <div class="q-options">
       <div class="q-options-label">Antwoorden</div>
       <div class="option-row">
-        <div class="option-bullet"></div>
+        <svg class="option-icon" aria-hidden="true"><use href="#icon-range-s"/></svg>
         <div class="option-text"><strong>Tot 150 m (diameter)</strong><span>bv. binnenshuis of kleine tot middelgrote buitenwerf</span></div>
       </div>
       <div class="option-row">
-        <div class="option-bullet"></div>
+        <svg class="option-icon" aria-hidden="true"><use href="#icon-range-m"/></svg>
         <div class="option-text"><strong>150 tot 300 m (diameter)</strong><span>bv. middelgrote werf, ruwbouw of wegenis</span></div>
       </div>
       <div class="option-row">
-        <div class="option-bullet"></div>
+        <svg class="option-icon" aria-hidden="true"><use href="#icon-range-l"/></svg>
         <div class="option-text"><strong>Meer dan 300 m (diameter)</strong><span>bv. grote infrastructuurwerken of uitgestrekt terrein</span></div>
       </div>
     </div>
@@ -1436,15 +1616,15 @@
     <div class="q-options">
       <div class="q-options-label">Antwoorden</div>
       <div class="option-row">
-        <div class="option-bullet"></div>
+        <svg class="option-icon" aria-hidden="true"><use href="#icon-green-beam"/></svg>
         <div class="option-text"><strong>Groen</strong><span>Betere zichtbaarheid, ook bij daglicht</span></div>
       </div>
       <div class="option-row">
-        <div class="option-bullet"></div>
+        <svg class="option-icon" aria-hidden="true"><use href="#icon-red-beam"/></svg>
         <div class="option-text"><strong>Rood</strong><span>Klassieke keuze voor werf, goed zichtbaar met ontvanger</span></div>
       </div>
       <div class="option-row">
-        <div class="option-bullet"></div>
+        <svg class="option-icon" aria-hidden="true"><use href="#icon-no-pref"/></svg>
         <div class="option-text"><strong>Geen voorkeur</strong></div>
       </div>
     </div>
@@ -1475,15 +1655,15 @@
     <div class="q-options">
       <div class="q-options-label">Antwoorden</div>
       <div class="option-row">
-        <div class="option-bullet"></div>
+        <svg class="option-icon" aria-hidden="true"><use href="#icon-target-low"/></svg>
         <div class="option-text"><strong>Standaard nivelleerwerk</strong><span>bv. peilen uitzetten op een bouwwerf (≤ 0,15 mm/m)</span></div>
       </div>
       <div class="option-row">
-        <div class="option-bullet"></div>
+        <svg class="option-icon" aria-hidden="true"><use href="#icon-target-mid"/></svg>
         <div class="option-text"><strong>Nauwkeurig uitzetten</strong><span>bv. funderingen, rioleringspeilen (≤ 0,09 mm/m)</span></div>
       </div>
       <div class="option-row">
-        <div class="option-bullet"></div>
+        <svg class="option-icon" aria-hidden="true"><use href="#icon-target-high"/></svg>
         <div class="option-text"><strong>Hoogste precisie</strong><span>bv. infrastructuur of zware buitenwerken (0,05 mm/m)</span></div>
       </div>
     </div>
@@ -1524,15 +1704,15 @@
     <div class="q-options">
       <div class="q-options-label">Antwoorden</div>
       <div class="option-row">
-        <div class="option-bullet"></div>
+        <svg class="option-icon" aria-hidden="true"><use href="#icon-vert-yes"/></svg>
         <div class="option-text"><strong>Ja</strong><span>Hoeken uitzetten of verticale vlakken markeren</span></div>
       </div>
       <div class="option-row">
-        <div class="option-bullet"></div>
+        <svg class="option-icon" aria-hidden="true"><use href="#icon-horiz-only"/></svg>
         <div class="option-text"><strong>Nee</strong><span>Alleen horizontaal nivelleren volstaat</span></div>
       </div>
       <div class="option-row">
-        <div class="option-bullet"></div>
+        <svg class="option-icon" aria-hidden="true"><use href="#icon-no-pref"/></svg>
         <div class="option-text"><strong>Geen voorkeur</strong></div>
       </div>
     </div>
@@ -1570,23 +1750,23 @@
     <div class="q-options">
       <div class="q-options-label">Antwoorden</div>
       <div class="option-row">
-        <div class="option-bullet"></div>
+        <svg class="option-icon" aria-hidden="true"><use href="#icon-brand-bosch"/></svg>
         <div class="option-text"><strong>BOSCH</strong><span>Brede range, sterk service-netwerk, GRL 300 en 400 H</span></div>
       </div>
       <div class="option-row">
-        <div class="option-bullet"></div>
+        <svg class="option-icon" aria-hidden="true"><use href="#icon-brand-futech"/></svg>
         <div class="option-text"><strong>FUTECH</strong><span>SPINNER, Para-serie — beste bereik en nauwkeurigheid in het assortiment</span></div>
       </div>
       <div class="option-row">
-        <div class="option-bullet"></div>
+        <svg class="option-icon" aria-hidden="true"><use href="#icon-brand-topcon"/></svg>
         <div class="option-text"><strong>TOPCON</strong><span>Premium meetapparatuur, uiterst nauwkeurig (0,05 mm/m)</span></div>
       </div>
       <div class="option-row">
-        <div class="option-bullet"></div>
+        <svg class="option-icon" aria-hidden="true"><use href="#icon-brand-xhander"/></svg>
         <div class="option-text"><strong>XHANDER</strong><span>Compacte instap-rotatielaser, IP66</span></div>
       </div>
       <div class="option-row">
-        <div class="option-bullet"></div>
+        <svg class="option-icon" aria-hidden="true"><use href="#icon-no-pref"/></svg>
         <div class="option-text"><strong>Geen voorkeur</strong><span>Toon alle merken — beste match bepaalt de aanbeveling</span></div>
       </div>
     </div>
@@ -1661,11 +1841,11 @@
     <div class="q-options">
       <div class="q-options-label">Antwoorden</div>
       <div class="option-row">
-        <div class="option-bullet"></div>
+        <svg class="option-icon" aria-hidden="true"><use href="#icon-dots-3"/></svg>
         <div class="option-text"><strong>3 punten</strong><span>Standaard overdracht — onder, voor en boven</span></div>
       </div>
       <div class="option-row">
-        <div class="option-bullet"></div>
+        <svg class="option-icon" aria-hidden="true"><use href="#icon-dots-5"/></svg>
         <div class="option-text"><strong>5 punten</strong><span>Complexere installaties met meerdere referentiepunten tegelijk</span></div>
       </div>
     </div>
@@ -1703,11 +1883,11 @@
     <div class="q-options">
       <div class="q-options-label">Antwoorden</div>
       <div class="option-row">
-        <div class="option-bullet"></div>
+        <svg class="option-icon" aria-hidden="true"><use href="#icon-brand-bosch"/></svg>
         <div class="option-text"><strong>BOSCH</strong><span>Enig beschikbaar merk in dit assortiment</span></div>
       </div>
       <div class="option-row">
-        <div class="option-bullet"></div>
+        <svg class="option-icon" aria-hidden="true"><use href="#icon-no-pref"/></svg>
         <div class="option-text"><strong>Geen voorkeur</strong><span>Toon alle opties</span></div>
       </div>
     </div>
@@ -1776,15 +1956,15 @@
     <div class="q-options">
       <div class="q-options-label">Antwoorden</div>
       <div class="option-row">
-        <div class="option-bullet"></div>
+        <svg class="option-icon" aria-hidden="true"><use href="#icon-tile"/></svg>
         <div class="option-text"><strong>Tegels uitlijnen</strong><span>Nauwkeurige tegel-op-tegel plaatsing, inclusief 45°-hulplijn</span></div>
       </div>
       <div class="option-row">
-        <div class="option-bullet"></div>
+        <svg class="option-icon" aria-hidden="true"><use href="#icon-ring-360"/></svg>
         <div class="option-text"><strong>Een horizontale lijn rondom de kamer</strong><span>bv. voor gordijnrails, stopcontacten of verlaagde plafonds</span></div>
       </div>
       <div class="option-row">
-        <div class="option-bullet"></div>
+        <svg class="option-icon" aria-hidden="true"><use href="#icon-line-1"/></svg>
         <div class="option-text"><strong>Algemeen uitlijnen</strong><span>bv. ophangen van objecten, eenvoudige rechte lijn op 1 vlak</span></div>
       </div>
     </div>
@@ -1827,15 +2007,15 @@
     <div class="q-options">
       <div class="q-options-label">Antwoorden</div>
       <div class="option-row">
-        <div class="option-bullet"></div>
+        <svg class="option-icon" aria-hidden="true"><use href="#icon-green-beam"/></svg>
         <div class="option-text"><strong>Groen</strong><span>Beste zichtbaarheid binnenshuis, ook bij verlicht daglicht</span></div>
       </div>
       <div class="option-row">
-        <div class="option-bullet"></div>
+        <svg class="option-icon" aria-hidden="true"><use href="#icon-red-beam"/></svg>
         <div class="option-text"><strong>Rood</strong><span>Klassieke keuze, goedkoper</span></div>
       </div>
       <div class="option-row">
-        <div class="option-bullet"></div>
+        <svg class="option-icon" aria-hidden="true"><use href="#icon-no-pref"/></svg>
         <div class="option-text"><strong>Geen voorkeur</strong></div>
       </div>
     </div>
@@ -1865,11 +2045,11 @@
     <div class="q-options">
       <div class="q-options-label">Antwoorden</div>
       <div class="option-row">
-        <div class="option-bullet"></div>
+        <svg class="option-icon" aria-hidden="true"><use href="#icon-brand-bosch"/></svg>
         <div class="option-text"><strong>BOSCH</strong><span>Enig beschikbaar merk in dit assortiment</span></div>
       </div>
       <div class="option-row">
-        <div class="option-bullet"></div>
+        <svg class="option-icon" aria-hidden="true"><use href="#icon-no-pref"/></svg>
         <div class="option-text"><strong>Geen voorkeur</strong><span>Toon alle opties</span></div>
       </div>
     </div>
