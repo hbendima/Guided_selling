@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LASERS — Guided Selling · Qonfi Implementatiegids</title>
+  <title>LASERS — Guided Selling v2.1 · Qonfi Implementatiegids</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
@@ -174,9 +174,8 @@
       position: relative;
       overflow: hidden;
       transition: transform 0.15s, box-shadow 0.15s;
-      cursor: default;
+      cursor: pointer;
     }
-    .flow-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
     .flow-card::before {
       content: '';
       position: absolute;
@@ -192,6 +191,8 @@
     }
     .flow-card .flow-name { font-weight: 700; font-size: 12px; margin-bottom: 3px; }
     .flow-card .flow-q { font-size: 11px; color: var(--muted); }
+    a.flow-card { text-decoration: none; color: inherit; display: block; }
+    .flow-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
     .fc-routing { background: linear-gradient(145deg, #fff5f5, var(--routing-light)); border: 1.5px solid var(--routing-mid); }
     .fc-routing .flow-letter { color: var(--routing); }
     .fc-routing::before { background: var(--routing); }
@@ -847,6 +848,53 @@
       vertical-align: middle;
     }
     .conditional-badge::before { content: '⚠'; font-size: 9px; }
+
+    /* ── QUICKNAV ── */
+    .quicknav {
+      background: rgba(255,255,255,0.97);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 32px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      position: sticky;
+      top: 56px;
+      z-index: 99;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+    }
+    .quicknav-label {
+      font-size: 10px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      margin-right: 4px;
+      white-space: nowrap;
+    }
+    .qn-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 5px 13px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: transform 0.15s, box-shadow 0.15s;
+      border: 1.5px solid transparent;
+      white-space: nowrap;
+    }
+    .qn-btn:hover { transform: translateY(-1px); box-shadow: 0 2px 8px rgba(0,0,0,0.12); }
+    .qn-routing { background: #ffe4e1; color: #9b1010; border-color: #fca5a5; }
+    .qn-a { background: #dbeafe; color: #1e40af; border-color: #93c5fd; }
+    .qn-b { background: #ede9fe; color: #5b21b6; border-color: #c4b5fd; }
+    .qn-c { background: #d1fae5; color: #065f46; border-color: #6ee7b7; }
+    .qn-d { background: #fef3c7; color: #92400e; border-color: #fcd34d; }
+    /* scroll clears both sticky bars */
+    .flow-group { scroll-margin-top: 112px; }
   </style>
 </head>
 <body>
@@ -1038,8 +1086,17 @@
   <span class="topbar-logo">KLIUM</span>
   <span class="topbar-sep">|</span>
   <span class="topbar-title">Guided Selling · LASERS — Qonfi Implementatiegids</span>
-  <span class="topbar-badge">v2 · mei 2026</span>
+  <span class="topbar-badge">v2.1 · mei 2026</span>
 </div>
+
+<nav class="quicknav" aria-label="Ga naar sectie">
+  <span class="quicknav-label">Naar:</span>
+  <a class="qn-btn qn-routing" href="#section-routing">↗ Routering</a>
+  <a class="qn-btn qn-a" href="#section-a">A Kruislijn</a>
+  <a class="qn-btn qn-b" href="#section-b">B Rotatie</a>
+  <a class="qn-btn qn-c" href="#section-c">C Punt</a>
+  <a class="qn-btn qn-d" href="#section-d">D Lijn</a>
+</nav>
 
 <div class="container">
 
@@ -1053,31 +1110,31 @@
   <div class="overview">
     <h2>Structuuroverzicht</h2>
     <div class="flow-grid">
-      <div class="flow-card fc-routing">
+      <a class="flow-card fc-routing" href="#section-routing">
         <span class="flow-letter">↗</span>
         <div class="flow-name">Routering</div>
         <div class="flow-q">Tile op categoriepagina</div>
-      </div>
-      <div class="flow-card fc-a">
+      </a>
+      <a class="flow-card fc-a" href="#section-a">
         <span class="flow-letter">A</span>
         <div class="flow-name">Kruislijnlaser</div>
         <div class="flow-q">4 vragen</div>
-      </div>
-      <div class="flow-card fc-b">
+      </a>
+      <a class="flow-card fc-b" href="#section-b">
         <span class="flow-letter">B</span>
         <div class="flow-name">Rotatielaser</div>
         <div class="flow-q">4 vragen</div>
-      </div>
-      <div class="flow-card fc-c">
+      </a>
+      <a class="flow-card fc-c" href="#section-c">
         <span class="flow-letter">C</span>
         <div class="flow-name">Puntlaser</div>
         <div class="flow-q">1 vraag</div>
-      </div>
-      <div class="flow-card fc-d">
+      </a>
+      <a class="flow-card fc-d" href="#section-d">
         <span class="flow-letter">D</span>
         <div class="flow-name">Lijnlaser</div>
         <div class="flow-q">2 vragen</div>
-      </div>
+      </a>
     </div>
   </div>
 
@@ -1092,7 +1149,7 @@
   <!-- ══════════════════════════════════════════════════════ -->
   <!-- ROUTERINGSVRAAG -->
   <!-- ══════════════════════════════════════════════════════ -->
-  <div class="flow-group">
+  <div class="flow-group" id="section-routing">
   <div class="section-header sh-routing">
     <span class="sh-letter">↗</span>
     <div class="sh-info">
@@ -1192,7 +1249,7 @@
   <!-- ══════════════════════════════════════════════════════ -->
   <!-- FLOW A: KRUISLIJNLASER -->
   <!-- ══════════════════════════════════════════════════════ -->
-  <div class="flow-group">
+  <div class="flow-group" id="section-a">
   <div class="section-header sh-a">
     <span class="sh-letter">A</span>
     <div class="sh-info">
@@ -1511,7 +1568,7 @@
   <!-- ══════════════════════════════════════════════════════ -->
   <!-- FLOW B: ROTATIELASER -->
   <!-- ══════════════════════════════════════════════════════ -->
-  <div class="flow-group">
+  <div class="flow-group" id="section-b">
   <div class="section-header sh-b">
     <span class="sh-letter">B</span>
     <div class="sh-info">
@@ -1801,7 +1858,7 @@
   <!-- ══════════════════════════════════════════════════════ -->
   <!-- FLOW C: PUNTLASER -->
   <!-- ══════════════════════════════════════════════════════ -->
-  <div class="flow-group">
+  <div class="flow-group" id="section-c">
   <div class="section-header sh-c">
     <span class="sh-letter">C</span>
     <div class="sh-info">
@@ -1910,7 +1967,7 @@
   <!-- ══════════════════════════════════════════════════════ -->
   <!-- FLOW D: LIJNLASER -->
   <!-- ══════════════════════════════════════════════════════ -->
-  <div class="flow-group">
+  <div class="flow-group" id="section-d">
   <div class="section-header sh-d">
     <span class="sh-letter">D</span>
     <div class="sh-info">
